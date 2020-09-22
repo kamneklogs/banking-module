@@ -1,88 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="778.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane layoutX="-1.0" prefHeight="615.0" prefWidth="192.0">
+      <Pane fx:id="mainPane" layoutX="-6.0" layoutY="40.0" prefHeight="575.0" prefWidth="784.0">
          <children>
-            <Separator layoutX="226.0" orientation="VERTICAL" prefHeight="615.0" prefWidth="13.0" />
-            <Accordion prefHeight="615.0" prefWidth="201.0">
-              <panes>
-                <TitledPane text="Modulo Caja">
-                     <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <RadioButton layoutX="21.0" layoutY="40.0" mnemonicParsing="false" onAction="#doPayOption" text="Realizar consignación">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="opsCashiersModule" />
-                                 </toggleGroup>
-                              </RadioButton>
-                              <RadioButton layoutX="21.0" layoutY="64.0" mnemonicParsing="false" onAction="#createAClientAccount" text="Crear cuenta bancaria" toggleGroup="$opsCashiersModule" />
-                              <RadioButton layoutX="21.0" layoutY="89.0" mnemonicParsing="false" onAction="#deleteClientAccount" text="Eliminar cuenta bancaria" toggleGroup="$opsCashiersModule" />
-                              <RadioButton layoutX="21.0" layoutY="117.0" mnemonicParsing="false" onAction="#payCreditCard" text="Pagar tarjeta de credito" toggleGroup="$opsCashiersModule" />
-                              <RadioButton layoutX="21.0" layoutY="143.0" mnemonicParsing="false" onAction="#searchAClient" text="Buscar un cliente" toggleGroup="$opsCashiersModule" />
-                              <RadioButton layoutX="21.0" layoutY="173.0" mnemonicParsing="false" onAction="#seeClientsDataBase" text="Ver lista de clientes" toggleGroup="$opsCashiersModule" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </TitledPane>
-                <TitledPane text="Modulo Fila">
-                     <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <RadioButton layoutX="32.0" layoutY="71.0" mnemonicParsing="false" onAction="#assignTurn" text="Asignar turno">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="opsQueueModule" />
-                                 </toggleGroup>
-                              </RadioButton>
-                              <RadioButton layoutX="32.0" layoutY="115.0" mnemonicParsing="false" onAction="#seeQueuesState" text="Ver estado de las filas" toggleGroup="$opsQueueModule" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </TitledPane>
-              </panes>
-            </Accordion>
-         </children>
-      </Pane>
-      <Pane fx:id="mainPane" layoutX="234.0" prefHeight="615.0" prefWidth="640.0">
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="56.0" prefHeight="73.0" prefWidth="544.0" text="Bienvenido al banco" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
-               <font>
-                  <Font name="Apple Chancery" size="48.0" />
-               </font>
-            </Label>
-            <Label layoutX="33.0" layoutY="219.0" text="En esta aplicación usted podrá realizar las siguientes funciones:">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="37.0" layoutY="278.0" text="Módulo Caja:">
-               <font>
-                  <Font name="System Bold Italic" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="44.0" layoutY="411.0" text="4.Pagar tarjeta de crédito." />
-            <Label layoutX="45.0" layoutY="358.0" text="2.Crear cuenta bancaria" />
-            <Label layoutX="44.0" layoutY="386.0" text="3.Eliminar una cuenta bancaria." />
-            <Label layoutX="44.0" layoutY="332.0" text="1. Realizar una consignación." />
-            <Label layoutX="44.0" layoutY="440.0" text="5.Buscar un cliente en la base de datos" />
-            <Label layoutX="44.0" layoutY="468.0" text="6.Desplegar lista total de clientes" />
-            <Label layoutX="387.0" layoutY="278.0" text="Módulo Fila:">
-               <font>
-                  <Font name="System Bold Italic" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="322.0" layoutY="332.0" text="1.Asigna un turno a un usuario que llegue" />
-            <Label layoutX="322.0" layoutY="358.0" prefHeight="40.0" prefWidth="273.0" text="2.Representación gráfica del estado de las filas" wrapText="true" />
+            <ImageView fitHeight="582.0" fitWidth="778.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Downloads/Red%20&amp;%20Blue%20Image%20Collage%20Architecture%20Presentation.png" />
+               </image>
+            </ImageView>
          </children></Pane>
+      <ToolBar layoutX="-1.0" prefHeight="35.0" prefWidth="778.0">
+        <items>
+            <Label alignment="CENTER" prefHeight="26.0" prefWidth="366.0" text="Modulos funciones Banking &amp; service" textFill="#1a3d5d">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+          <TitledPane alignment="CENTER" expanded="false" text="Modulo Caja">
+               <content>
+                  <AnchorPane prefHeight="179.0" prefWidth="191.0">
+                     <children>
+                        <RadioButton layoutX="21.0" layoutY="40.0" mnemonicParsing="false" onAction="#doPayOption" text="Realizar consignación">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="opsCashiersModule" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton layoutX="21.0" layoutY="64.0" mnemonicParsing="false" onAction="#createAClientAccount" text="Crear cuenta bancaria" toggleGroup="$opsCashiersModule" />
+                        <RadioButton layoutX="21.0" layoutY="89.0" mnemonicParsing="false" onAction="#deleteClientAccount" text="Eliminar cuenta bancaria" toggleGroup="$opsCashiersModule" />
+                        <RadioButton layoutX="21.0" layoutY="117.0" mnemonicParsing="false" onAction="#payCreditCard" text="Pagar tarjeta de credito" toggleGroup="$opsCashiersModule" />
+                        <RadioButton layoutX="21.0" layoutY="143.0" mnemonicParsing="false" onAction="#searchAClient" text="Buscar un cliente" toggleGroup="$opsCashiersModule" />
+                        <RadioButton layoutX="21.0" layoutY="173.0" mnemonicParsing="false" onAction="#seeClientsDataBase" text="Ver lista de clientes" toggleGroup="$opsCashiersModule" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+          <TitledPane alignment="CENTER" expanded="false" text="Modulo Fila">
+               <content>
+                  <AnchorPane prefHeight="211.0" prefWidth="188.0">
+                     <children>
+                        <RadioButton layoutX="32.0" layoutY="71.0" mnemonicParsing="false" onAction="#assignTurn" text="Asignar turno">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="opsQueueModule" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton layoutX="32.0" layoutY="115.0" mnemonicParsing="false" onAction="#seeQueuesState" text="Ver estado de las filas" toggleGroup="$opsQueueModule" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+        </items>
+      </ToolBar>
    </children>
 </Pane>
