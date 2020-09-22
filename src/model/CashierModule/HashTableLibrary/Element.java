@@ -1,4 +1,4 @@
-package model.cashierModule.HashTableLibrary;
+package model.CashierModule.HashTableLibrary;
 
 public class Element<K, V> {
     private K key;

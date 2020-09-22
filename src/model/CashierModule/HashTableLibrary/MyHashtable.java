@@ -1,4 +1,8 @@
-package model.cashierModule.HashTableLibrary;
+package model.CashierModule.HashTableLibrary;
+
+import java.util.ArrayList;
+
+import model.Client;
 
 public class MyHashtable<K, V> implements IMyHashtable<K, V> {
 
@@ -7,7 +11,7 @@ public class MyHashtable<K, V> implements IMyHashtable<K, V> {
     int size;
 
     public MyHashtable() {
-        maxs = 100;
+        maxs = 249;
         slots = new Element[maxs];
     }
 
@@ -21,8 +25,8 @@ public class MyHashtable<K, V> implements IMyHashtable<K, V> {
 
     // funcion h
     public int getSlotIndex(K key) {
-        int hashCod = key.hashCode();
-        return Math.abs(hashCod % maxs);
+
+        return (Integer) key;
     }
 
     public V get(K key) throws ClassCastException {
@@ -109,6 +113,21 @@ public class MyHashtable<K, V> implements IMyHashtable<K, V> {
 
         }
 
+    }
+
+    @Override
+    public ArrayList<Client> generateArrayList() {
+
+        ArrayList<Client> theaL = new ArrayList<Client>();
+
+        for (int i = 0; i < slots.length; i++) {
+
+            if(slots[i]!=null)
+            theaL.add((Client)slots[i].getValue());
+
+        }
+
+        return theaL;
     }
 
 }

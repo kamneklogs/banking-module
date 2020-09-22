@@ -2,15 +2,15 @@ package model;
 
 public class User {
 
-    private String name, id;
+    private String name;
+    private int id;
     private int specialCondition;
-    //0 No condicion especial
-    //1 Tercera edad 
-    //2 Discapacidad
-    //3 Embarazo y niños en brazos
+    // 0 No condicion especial
+    // 1 Tercera edad
+    // 2 Discapacidad
+    // 3 Embarazo y niños en brazos
 
-
-    public User(String name, String id, int specialCondition) {
+    public User(String name, int id, int specialCondition) {
         this.name = name;
         this.id = id;
         this.specialCondition = specialCondition;
@@ -24,11 +24,11 @@ public class User {
         this.name = name;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -43,7 +43,5 @@ public class User {
     public int getSpecialCondition() {
         return specialCondition;
     }
-
-
 
 }

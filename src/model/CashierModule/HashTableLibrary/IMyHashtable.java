@@ -1,4 +1,8 @@
-package model.cashierModule.HashTableLibrary;
+package model.CashierModule.HashTableLibrary;
+
+import java.util.ArrayList;
+
+import model.Client;
 
 public interface IMyHashtable<K, V> {
 
@@ -13,5 +17,7 @@ public interface IMyHashtable<K, V> {
     public V remove(K key);
 
     public void add(K key, V value);
+
+    public ArrayList<Client> generateArrayList();
 
 }

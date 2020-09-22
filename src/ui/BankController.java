@@ -9,8 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
+import model.CashierModule.CashierModule;
 import model.QueueModule.QueueModule;
-import model.cashierModule.CashierModule;
 
 public class BankController {
 
