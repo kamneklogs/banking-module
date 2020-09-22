@@ -15,7 +15,7 @@ public class QueueModule {
 
     public boolean receivePerson(User u) {
 
-        if (u.isSpecialCondition()) {
+        if (u.getSpecialCondition() != 0) {
             priorityQueue = null;
         } else {
 

@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import model.QueueModule.QueueModule;
@@ -25,6 +26,9 @@ public class BankController {
 
 	@FXML
 	private Pane mainPane;
+
+	public void initialize(){
+	}
 
 	@FXML
 	void createAClientAccount(ActionEvent event) throws IOException {

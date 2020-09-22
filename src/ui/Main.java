@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	private BankController bc;
+	
 
 	public Main() {
 		bc = new BankController();
@@ -26,7 +27,7 @@ public class Main extends Application {
 
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("Bank!");
+		primaryStage.setTitle("Banking & service");
 		primaryStage.show();
 	}
 

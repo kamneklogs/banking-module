@@ -12,7 +12,7 @@ public class Client extends User {
 
     // Politica de banco: para limite credito sera balance*0.1
     public Client(String name, String id, double balance, double creditQuota, Date datePayC, Date registrationDate,
-            boolean specialCondition) {
+            int specialCondition) {
         super(name, id, specialCondition);
         this.balance = balance;
         this.creditQuota = creditQuota;

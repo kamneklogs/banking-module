@@ -34,7 +34,7 @@ public class CashierModule {
 	}
 	
 	public void signUpClient(User theNew, double balance, double creditQuota, Date datePayC, Date registrationDate,
-            boolean specialCondition) {
+            int specialCondition) {
 		dataBaseClients.add(theNew.getId(), 
 				new Client(theNew.getName(),theNew.getId(),balance, creditQuota, datePayC,registrationDate,specialCondition));
 		
