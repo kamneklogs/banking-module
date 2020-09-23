@@ -1,13 +1,15 @@
 package model.CashierModule;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
 import model.Client;
 import model.User;
+import model.CashierModule.ABBLibrary.IMyBST;
 import model.CashierModule.HashTableLibrary.IMyHashtable;
 import model.CashierModule.HashTableLibrary.MyHashtable;
+import model.CashierModule.LinkedListLibrary.IMyDoublyLinkedList;
+import model.CashierModule.LinkedListLibrary.MyDoublyLinkedList;
 
 public class CashierModule {
 
@@ -15,10 +17,13 @@ public class CashierModule {
 	private ArrayList<Client> allClients;
 
 	private IMyHashtable<Integer, Client> dataBasePartitionA;
+	private IMyBST<Client> dataBasePartitionB;
+	private IMyDoublyLinkedList<Client> dataBasePartitionC;
 
 	public CashierModule() {
 		allClients = new ArrayList<Client>();
 		dataBasePartitionA = new MyHashtable<Integer, Client>();
+		dataBasePartitionC = new MyDoublyLinkedList<Client>();
 	}
 
 	public User getCurrent() {
@@ -48,8 +53,12 @@ public class CashierModule {
 			// Partition B: ABB
 		} else if (theNew.getId() >= 250 && theNew.getId() < 500) {
 
+			addClientToPartitionB(new Client(theNew.getName(), theNew.getId(), balance, creditQuota, datePayC,
+					registrationDate, specialCondition));
 			// Partition C: LinkedList
 		} else if (theNew.getId() >= 500 && theNew.getId() < 750) {
+			addClientToPartitionC(new Client(theNew.getName(), theNew.getId(), balance, creditQuota, datePayC,
+					registrationDate, specialCondition));
 
 			// Partition D: Heaps
 		} else {
@@ -64,12 +73,21 @@ public class CashierModule {
 
 	}
 
+	private void addClientToPartitionB(Client theNewClient) {
+
+		dataBasePartitionB.addNode(theNewClient);
+	}
+
+	private void addClientToPartitionC(Client theNewClient) {
+		dataBasePartitionC.add(theNewClient);
+	}
+
 	public ArrayList<Client> unifyClients() {
 		ArrayList<Client> allClients = new ArrayList<Client>();
 
 		allClients.addAll(dataBasePartitionA.generateArrayList());
-		
 
+		allClients.addAll(dataBasePartitionB.generateArrayList());
 		return allClients;
 	}
 
