@@ -1,6 +1,6 @@
 package model;
 
-public class User implements Comparable {
+public class User {
 
 	private String name;
 	private int id;
@@ -44,20 +44,6 @@ public class User implements Comparable {
 		return specialCondition;
 	}
 
-	@Override
-	public int compareTo(Object u) {
-
-		User another = (User) u;
-
-		if (getId() > another.getId()) {
-			return 1;
-
-		} else if (getId() == another.getId()) {
-			return 0;
-		} else {
-			return -1;
-		}
-
-	}
+	
 
 }

@@ -2,7 +2,7 @@ package model;
 
 import java.util.Date;
 
-public class Client extends User implements Comparable {
+public class Client extends User implements Comparable<Client> {
 
 	private double balance;
 	private double creditQuota, limit;
@@ -47,6 +47,20 @@ public class Client extends User implements Comparable {
 
 	public void setRegistrationDate(Date registrationDate) {
 		this.registrationDate = registrationDate;
+	}
+
+	@Override
+	public int compareTo(Client u) {
+
+		if (getId() > u.getId()) {
+			return 1;
+
+		} else if (getId() == u.getId()) {
+			return 0;
+		} else {
+			return -1;
+		}
+
 	}
 
 }

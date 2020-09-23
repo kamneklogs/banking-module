@@ -23,8 +23,6 @@ public class Main {
 
 		System.out.println(c.generateArrayList().get(2).getName());
 
-		NodeBST a = c.searchNode(c.getRoot().getData());
-		System.out.println(a.getData());
 	}
 
 }

@@ -8,6 +8,8 @@ import model.User;
 import model.CashierModule.ABBLibrary.IMyBST;
 import model.CashierModule.HashTableLibrary.IMyHashtable;
 import model.CashierModule.HashTableLibrary.MyHashtable;
+import model.CashierModule.HeapSortLibrary.HeapSort;
+import model.CashierModule.HeapSortLibrary.GenericArray.GenericArray;
 import model.CashierModule.LinkedListLibrary.IMyDoublyLinkedList;
 import model.CashierModule.LinkedListLibrary.MyDoublyLinkedList;
 
@@ -19,11 +21,13 @@ public class CashierModule {
 	private IMyHashtable<Integer, Client> dataBasePartitionA;
 	private IMyBST<Client> dataBasePartitionB;
 	private IMyDoublyLinkedList<Client> dataBasePartitionC;
+	private ArrayList<Client> dataBasePartitionD;
 
 	public CashierModule() {
 		allClients = new ArrayList<Client>();
 		dataBasePartitionA = new MyHashtable<Integer, Client>();
 		dataBasePartitionC = new MyDoublyLinkedList<Client>();
+		dataBasePartitionD = new ArrayList<Client>();
 	}
 
 	public User getCurrent() {
@@ -62,7 +66,8 @@ public class CashierModule {
 
 			// Partition D: Heaps
 		} else {
-
+			addClientToPartitionD(new Client(theNew.getName(), theNew.getId(), balance, creditQuota, datePayC,
+					registrationDate, specialCondition));
 		}
 
 	}
@@ -82,12 +87,36 @@ public class CashierModule {
 		dataBasePartitionC.add(theNewClient);
 	}
 
+	private void addClientToPartitionD(Client theNewClient) {
+		dataBasePartitionD.add(theNewClient);
+	}
+
 	public ArrayList<Client> unifyClients() {
 		ArrayList<Client> allClients = new ArrayList<Client>();
 
 		allClients.addAll(dataBasePartitionA.generateArrayList());
 
 		allClients.addAll(dataBasePartitionB.generateArrayList());
+
+		// linked list
+
+		HeapSort<Client> hS = new HeapSort<Client>();
+
+		GenericArray<Client> clients = new GenericArray<Client>(dataBasePartitionD.size());
+
+		for (int i = 0; i < dataBasePartitionD.size(); i++) {
+			clients.set(i, dataBasePartitionD.get(i));
+		}
+
+		clients = hS.sortArray(clients);
+
+		dataBasePartitionD.clear();
+		for (int i = 0; i < clients.length; i++) {
+			dataBasePartitionD.add(clients.get(i));
+		}
+
+		allClients.addAll(dataBasePartitionD);
+
 		return allClients;
 	}
 
