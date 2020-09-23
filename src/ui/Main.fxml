@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="778.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -20,48 +16,26 @@
                   <Image url="@Bienvenida.png" />
                </image>
             </ImageView>
-            <Label fx:id="carita" layoutX="82.0" layoutY="6.0" text="Label" />
          </children></Pane>
-      <ToolBar layoutX="-1.0" prefHeight="35.0" prefWidth="778.0">
-        <items>
-            <Label alignment="CENTER" prefHeight="26.0" prefWidth="366.0" text="Modulos funciones Banking &amp; service" textFill="#1a3d5d">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-          <TitledPane alignment="CENTER" expanded="false" text="Modulo Caja">
-               <content>
-                  <AnchorPane prefHeight="179.0" prefWidth="191.0">
-                     <children>
-                        <RadioButton layoutX="21.0" layoutY="40.0" mnemonicParsing="false" onAction="#doPayOption" text="Realizar consignación">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="opsCashiersModule" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton layoutX="21.0" layoutY="64.0" mnemonicParsing="false" onAction="#createAClientAccount" text="Crear cuenta bancaria" toggleGroup="$opsCashiersModule" />
-                        <RadioButton layoutX="21.0" layoutY="89.0" mnemonicParsing="false" onAction="#deleteClientAccount" text="Eliminar cuenta bancaria" toggleGroup="$opsCashiersModule" />
-                        <RadioButton layoutX="21.0" layoutY="117.0" mnemonicParsing="false" onAction="#payCreditCard" text="Pagar tarjeta de credito" toggleGroup="$opsCashiersModule" />
-                        <RadioButton layoutX="21.0" layoutY="143.0" mnemonicParsing="false" onAction="#searchAClient" text="Buscar un cliente" toggleGroup="$opsCashiersModule" />
-                        <RadioButton layoutX="21.0" layoutY="173.0" mnemonicParsing="false" onAction="#seeClientsDataBase" text="Ver lista de clientes" toggleGroup="$opsCashiersModule" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </TitledPane>
-          <TitledPane alignment="CENTER" expanded="false" text="Modulo Fila">
-               <content>
-                  <AnchorPane prefHeight="211.0" prefWidth="188.0">
-                     <children>
-                        <RadioButton layoutX="32.0" layoutY="71.0" mnemonicParsing="false" onAction="#assignTurn" text="Asignar turno">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="opsQueueModule" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton layoutX="32.0" layoutY="115.0" mnemonicParsing="false" onAction="#seeQueuesState" text="Ver estado de las filas" toggleGroup="$opsQueueModule" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </TitledPane>
-        </items>
-      </ToolBar>
+      <MenuBar layoutX="-2.0" layoutY="3.0" prefHeight="37.0" prefWidth="776.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Módulo caja">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Realizar consignación" />
+                  <MenuItem mnemonicParsing="false" text="Crear cuenta bancaria" />
+                  <MenuItem mnemonicParsing="false" text="Eliminar cuenta bancaria" />
+                  <MenuItem mnemonicParsing="false" text="Pagar tarjeta de crédito" />
+                  <MenuItem mnemonicParsing="false" text="Buscar un cliente en la base de datos" />
+                  <MenuItem mnemonicParsing="false" text="Desplegar la lista total de clientes" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Módulo fila">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Asignar un turno" />
+                  <MenuItem mnemonicParsing="false" text="Representación gráfica del estado de las filas" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </Pane>
