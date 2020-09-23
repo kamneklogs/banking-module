@@ -5,6 +5,7 @@ import java.util.Date;
 
 import model.Client;
 import model.User;
+import model.CashierModule.ABBLibrary.IMyBST;
 import model.CashierModule.HashTableLibrary.IMyHashtable;
 import model.CashierModule.HashTableLibrary.MyHashtable;
 import model.CashierModule.LinkedListLibrary.IMyDoublyLinkedList;
@@ -16,6 +17,7 @@ public class CashierModule {
 	private ArrayList<Client> allClients;
 
 	private IMyHashtable<Integer, Client> dataBasePartitionA;
+	private IMyBST<Client> dataBasePartitionB;
 	private IMyDoublyLinkedList<Client> dataBasePartitionC;
 
 	public CashierModule() {
@@ -51,6 +53,8 @@ public class CashierModule {
 			// Partition B: ABB
 		} else if (theNew.getId() >= 250 && theNew.getId() < 500) {
 
+			addClientToPartitionB(new Client(theNew.getName(), theNew.getId(), balance, creditQuota, datePayC,
+					registrationDate, specialCondition));
 			// Partition C: LinkedList
 		} else if (theNew.getId() >= 500 && theNew.getId() < 750) {
 			addClientToPartitionC(new Client(theNew.getName(), theNew.getId(), balance, creditQuota, datePayC,
@@ -67,6 +71,11 @@ public class CashierModule {
 
 		dataBasePartitionA.add(theNewClient.getId(), theNewClient);
 
+	}
+
+	private void addClientToPartitionB(Client theNewClient) {
+
+		dataBasePartitionB.addNode(theNewClient);
 	}
 
 	private void addClientToPartitionC(Client theNewClient) {
