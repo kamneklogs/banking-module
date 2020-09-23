@@ -31,7 +31,6 @@ public class QueueModule {
 
         return true;
     }
-    
 
     public IQueue<User> getSimpleQueue() {
         return simpleQueue;

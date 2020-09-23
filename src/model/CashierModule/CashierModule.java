@@ -16,7 +16,6 @@ import model.CashierModule.LinkedListLibrary.MyDoublyLinkedList;
 public class CashierModule {
 
 	private User current, next;
-	private ArrayList<Client> allClients;
 
 	private IMyHashtable<Integer, Client> dataBasePartitionA;
 	private IMyBST<Client> dataBasePartitionB;
@@ -24,8 +23,8 @@ public class CashierModule {
 	private ArrayList<Client> dataBasePartitionD;
 
 	public CashierModule() {
-		allClients = new ArrayList<Client>();
 		dataBasePartitionA = new MyHashtable<Integer, Client>();
+
 		dataBasePartitionC = new MyDoublyLinkedList<Client>();
 		dataBasePartitionD = new ArrayList<Client>();
 	}
