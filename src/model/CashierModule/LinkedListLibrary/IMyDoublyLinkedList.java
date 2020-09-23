@@ -2,7 +2,7 @@ package model.CashierModule.LinkedListLibrary;
 
 import java.util.ArrayList;
 
-public interface IMyDoublyLinkedList<E> {
+public interface IMyDoublyLinkedList<E extends Comparable> {
 
 	public int size();
 

@@ -87,6 +87,7 @@ public class CashierModule {
 
 		allClients.addAll(dataBasePartitionA.generateArrayList());
 
+		allClients.addAll(dataBasePartitionB.generateArrayList());
 		return allClients;
 	}
 

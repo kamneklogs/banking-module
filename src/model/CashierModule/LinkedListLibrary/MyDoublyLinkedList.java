@@ -1,8 +1,9 @@
 package model.CashierModule.LinkedListLibrary;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class MyDoublyLinkedList<E> implements IMyDoublyLinkedList<E> {
+public class MyDoublyLinkedList<E extends Comparable> implements IMyDoublyLinkedList<E> {
 	LLNode<E> head;
 	LLNode<E> tail;
 	int size;
@@ -268,6 +269,8 @@ public class MyDoublyLinkedList<E> implements IMyDoublyLinkedList<E> {
 				temp = temp.getNext();
 			}
 		}
+
+		Collections.sort(theaL);
 		return theaL;
 	}
 

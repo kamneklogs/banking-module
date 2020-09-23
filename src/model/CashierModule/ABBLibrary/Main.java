@@ -12,7 +12,7 @@ public class Main {
 
 		c.addNode(new Client("Andrea", 1010, 999, 999, new Date(), new Date(), 0));
 
-		System.out.println(c.root.getData().getName());
+		System.out.println(c.root);
 		c.addNode(new Client("Danna", 1, 999, 000, new Date(), new Date(), 0));
 		System.out.println(c.root.getLeft().getData().getName());
 		System.out.println(c.root.getRight());
@@ -23,6 +23,8 @@ public class Main {
 
 		System.out.println(c.generateArrayList().get(2).getName());
 
+		NodeBST a = c.searchNode(c.getRoot().getData());
+		System.out.println(a.getData());
 	}
 
 }

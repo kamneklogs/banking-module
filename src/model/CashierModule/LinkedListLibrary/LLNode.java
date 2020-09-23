@@ -1,6 +1,6 @@
 package model.CashierModule.LinkedListLibrary;
 
-public class LLNode<E> {
+public class LLNode<E extends Comparable> {
 	LLNode<E> prev;
 	LLNode<E> next;
 	E data;
@@ -38,5 +38,10 @@ public class LLNode<E> {
 		theNew.prev = this;
 		next = theNew;
 
+	}
+
+	public int compareTo(Object n) {
+		LLNode<E> node = (LLNode<E>) n;
+		return data.compareTo(node.data);
 	}
 }
