@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.User;
+import model.QueueModule.PriorityQueueue.MyHeap;
 
 public class Main extends Application {
 
@@ -16,7 +18,18 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 	
-		launch(args);
+		//launch(args);
+
+		MyHeap mH = new MyHeap();
+
+		mH.insert(new User("Danna", 45342, 2));
+		mH.insert(new User("Andrea", 12213, 3));
+		mH.insert(new User("La Nunez", 5422, 4));
+
+		System.out.println(mH.elements.get(0).getName());
+		System.out.println(mH.elements.get(1).getName());
+		System.out.println(mH.elements.get(2).getName());
+
 	}
 
 	@Override
