@@ -1,22 +1,24 @@
 package model.QueueModule;
 
 import model.User;
+import model.CashierModule.HeapSortLibrary.MyHeap;
 import model.QueueModule.QueueLibrary.*;
 
 public class QueueModule {
 
     private IQueue<User> simpleQueue;
-    private Object priorityQueue;
+    private MyHeap priorityQueue;
     private User current, next;
 
     public QueueModule() {
         simpleQueue = new Queue<User>();
+        priorityQueue= new MyHeap();
     }
 
     public boolean receivePerson(User u) {
 
         if (u.getSpecialCondition() != 0) {
-            priorityQueue = null;
+            priorityQueue.insert(u);
         } else {
 
             simpleQueue.enqueue(u);

@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="778.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="778.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane fx:id="mainPane" layoutX="-6.0" layoutY="40.0" prefHeight="575.0" prefWidth="784.0">
          <children>
@@ -31,8 +31,8 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Módulo fila">
             <items>
-              <MenuItem mnemonicParsing="false" text="Asignar un turno" />
-                  <MenuItem mnemonicParsing="false" text="Representación gráfica del estado de las filas" />
+              <MenuItem mnemonicParsing="false" onAction="#assignTurn" text="Asignar un turno" />
+                  <MenuItem mnemonicParsing="false" onAction="#seeQueuesState" text="Representación gráfica del estado de las filas" />
             </items>
           </Menu>
         </menus>

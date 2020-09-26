@@ -1,5 +1,6 @@
 package model;
 
+
 public class User {
 
 	private String name;
@@ -43,6 +44,24 @@ public class User {
 	public int getSpecialCondition() {
 		return specialCondition;
 	}
+
+
+
+
+
+
+	public int compareTo2(User u) {
+		if (getSpecialCondition() > u.getSpecialCondition()) {
+			return 1;
+
+		} else if (getSpecialCondition() == u.getSpecialCondition()) {
+			return 0;
+		} else {
+			return -1;
+		}
+	}
+
+
 
 	
 
