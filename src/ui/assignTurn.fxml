@@ -32,12 +32,12 @@
       <Button layoutX="215.0" layoutY="383.0" mnemonicParsing="false" onAction="#enqueueUserBtn" text="Asignar turno" />
       <Label fx:id="queueLabel" layoutX="24.0" layoutY="504.0" text="Label">
          <font>
-            <Font size="44.0" />
+            <Font size="30.0" />
          </font>
       </Label>
       <Label fx:id="priorityLabel" layoutX="24.0" layoutY="433.0" text="Label">
          <font>
-            <Font size="44.0" />
+            <Font size="30.0" />
          </font>
       </Label>
    </children>

@@ -1,24 +1,24 @@
 package model.QueueModule;
 
 import model.User;
-import model.CashierModule.HeapSortLibrary.MyHeap;
+import model.QueueModule.PriorityQueue.PriorityQueueHeap;
 import model.QueueModule.QueueLibrary.*;
 
 public class QueueModule {
 
     public IQueue<User> simpleQueue;
-    private MyHeap priorityQueue;
+    private PriorityQueueHeap priorityQueue;
     private User current, next;
 
     public QueueModule() {
         simpleQueue = new Queue<User>();
-        priorityQueue= new MyHeap();
+        priorityQueue = new PriorityQueueHeap(100);
     }
 
     public boolean receivePerson(User u) {
 
         if (u.getSpecialCondition() != 0) {
-            priorityQueue.insert(u);
+            priorityQueue.enqueue(u);
         } else {
 
             simpleQueue.enqueue(u);
@@ -34,22 +34,24 @@ public class QueueModule {
         return true;
     }
 
-    public String[] returnQueue(){
+    public String[] returnQueue() {
         String msgSimpleQueue = "";
         String msgPriorityQueue = "";
-        for(int i = 0; i < simpleQueue.getSize(); i++){
+        for (int i = 0; i < simpleQueue.getSize(); i++) {
             int chose = (int) (Math.random() * (3 - 1) + 1);
-            if(chose == 1){
+            if (chose == 1) {
                 // Hombre
                 msgSimpleQueue = "\uD83D\uDC71\u200D\u2642\uFE0F";
-                
-            } else{
+
+            } else {
                 // Mujer
                 msgSimpleQueue = "\uD83D\uDEB6\u200D\u2640\uFE0F";
             }
         }
-        for(int i = 0; i < priorityQueue.getElements().size(); i++){
-            switch(priorityQueue.getElements().get(i).getSpecialCondition()){
+        for (int i = 1; i < priorityQueue.lastIndex; i++) {
+
+            switch (priorityQueue.getHeap()[i].getSpecialCondition()) {
+
                 case 1:
                     msgPriorityQueue += "\uD83D\uDC68\u200D\uD83E\uDDAF";
                     break;
@@ -59,7 +61,9 @@ public class QueueModule {
                 case 3:
                     msgPriorityQueue += "\uD83E\uDD30";
                     break;
+
             }
+
         }
         String[] arreglo = new String[2];
         arreglo[0] = msgSimpleQueue;

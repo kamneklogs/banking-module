@@ -25,25 +25,25 @@ public class BankController {
 	private CashierModule cashierModule;
 
 	@FXML
-    private TextField nameUserLbl;
+	private TextField nameUserLbl;
 
-    @FXML
-    private TextField idUserLbl1;
+	@FXML
+	private TextField idUserLbl1;
 
-    @FXML
-    private RadioButton nonSpecialCRB;
+	@FXML
+	private RadioButton nonSpecialCRB;
 
-    @FXML
-    private ToggleGroup specialCondicions;
+	@FXML
+	private ToggleGroup specialCondicions;
 
-    @FXML
-    private RadioButton ancientSpecialCRB;
+	@FXML
+	private RadioButton ancientSpecialCRB;
 
-    @FXML
-    private RadioButton discapacitySpecialCRB;
+	@FXML
+	private RadioButton discapacitySpecialCRB;
 
-    @FXML
-    private RadioButton pregnancySpecialCRB;
+	@FXML
+	private RadioButton pregnancySpecialCRB;
 
 	@FXML
 	private Label priorityLabel;
@@ -58,15 +58,15 @@ public class BankController {
 
 	String msgPriority;
 
-	public BankController(){
-		queueModule= new QueueModule();
+	public BankController() {
+		queueModule = new QueueModule();
 		cashierModule = new CashierModule();
 		msgQueue = "Estado actual fila simple: ";
 		msgPriority = "Estado actual fila prioridad: ";
 	}
 
-	public void initialize(){
-		
+	public void initialize() {
+
 	}
 
 	@FXML
@@ -135,62 +135,62 @@ public class BankController {
 		msgQueue += queueModule.returnQueue()[0];
 		queueLabel.setText(msgQueue);
 
-		msgPriority = queueModule.returnQueue()[1];
+		msgPriority += queueModule.returnQueue()[1];
+		System.out.println(msgPriority);
 		priorityLabel.setText(msgPriority);
 	}
 
+	@FXML
+	void enqueueUserBtn(ActionEvent event) throws IOException {
 
-    @FXML
-    void enqueueUserBtn(ActionEvent event) throws IOException {
+		try {
+			String name = nameUserLbl.getText();
 
-    	try {
-        	String name= nameUserLbl.getText();
-        	
-        	int id= Integer.parseInt(idUserLbl1.getText());
-        	
-        	if(idUserLbl1.getText().length()!=3) {
-        		Alert advertencia = new Alert(AlertType.ERROR);
-        		advertencia.setTitle("ERROR DE FORMATO");
-        		advertencia.initStyle(StageStyle.DECORATED);
-        		advertencia.setContentText("El número de identificación debería contener 3 dígitos exactamente");
-        		advertencia.showAndWait();
+			int id = Integer.parseInt(idUserLbl1.getText());
+
+			if (idUserLbl1.getText().length() != 3) {
+				Alert advertencia = new Alert(AlertType.ERROR);
+				advertencia.setTitle("ERROR DE FORMATO");
+				advertencia.initStyle(StageStyle.DECORATED);
+				advertencia.setContentText("El número de identificación debería contener 3 dígitos exactamente");
+				advertencia.showAndWait();
 			}
-        	int specialCondition=-1;
-        	if(nonSpecialCRB.isSelected()) {
-				specialCondition=0;
-        	}else if(ancientSpecialCRB.isSelected()) {
-				specialCondition=1;
-        	}else if(discapacitySpecialCRB.isSelected()) {
-        		specialCondition=2;
-        	}else if(pregnancySpecialCRB.isSelected()) {
-        		specialCondition=3;
-        	}else {
-        		Alert advertencia = new Alert(AlertType.ERROR);
-        		advertencia.setTitle("ERROR DE FORMATO");
-        		advertencia.initStyle(StageStyle.DECORATED);
-        		advertencia.setContentText("Tiene que seleccionar una opción");
-        		advertencia.showAndWait();
-        		
+			int specialCondition = -1;
+			if (nonSpecialCRB.isSelected()) {
+				specialCondition = 0;
+			} else if (ancientSpecialCRB.isSelected()) {
+				specialCondition = 1;
+			} else if (discapacitySpecialCRB.isSelected()) {
+				specialCondition = 2;
+			} else if (pregnancySpecialCRB.isSelected()) {
+				specialCondition = 3;
+			} else {
+				Alert advertencia = new Alert(AlertType.ERROR);
+				advertencia.setTitle("ERROR DE FORMATO");
+				advertencia.initStyle(StageStyle.DECORATED);
+				advertencia.setContentText("Tiene que seleccionar una opción");
+				advertencia.showAndWait();
+
 			}
 			System.out.println(specialCondition);
-        	User theNew = new User(name, id, specialCondition);
-        	queueModule.receivePerson(theNew);
-        	
-        	Alert advertencia = new Alert(AlertType.CONFIRMATION);
-    		advertencia.setTitle("CONFIRMACIÓN");
-    		advertencia.initStyle(StageStyle.DECORATED);
-    		advertencia.setContentText("Generación de turno exitosa. A continuación se le mostrará el estado de la fila");
-    		advertencia.showAndWait();
-			
+			User theNew = new User(name, id, specialCondition);
+			queueModule.receivePerson(theNew);
+
+			Alert advertencia = new Alert(AlertType.CONFIRMATION);
+			advertencia.setTitle("CONFIRMACIÓN");
+			advertencia.initStyle(StageStyle.DECORATED);
+			advertencia
+					.setContentText("Generación de turno exitosa. A continuación se le mostrará el estado de la fila");
+			advertencia.showAndWait();
+
 			assignTurn(event);
-    	}catch(NumberFormatException e) {
-    		Alert advertencia = new Alert(AlertType.ERROR);
-    		advertencia.setTitle("ERROR DE FORMATO");
-    		advertencia.initStyle(StageStyle.DECORATED);
-    		advertencia.setContentText("Ingresó caracteres no numéricos en el id");
-    		advertencia.show();
-    	}
+		} catch (NumberFormatException e) {
+			Alert advertencia = new Alert(AlertType.ERROR);
+			advertencia.setTitle("ERROR DE FORMATO");
+			advertencia.initStyle(StageStyle.DECORATED);
+			advertencia.setContentText("Ingresó caracteres no numéricos en el id");
+			advertencia.show();
+		}
 
-
-    }
+	}
 }
