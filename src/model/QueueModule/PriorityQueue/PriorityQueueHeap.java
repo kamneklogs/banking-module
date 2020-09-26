@@ -94,6 +94,8 @@ public class PriorityQueueHeap {
 
 		User rootValue = heap[1];
 		swap(1, lastIndex);
+		heap[lastIndex]=null;
+
 		lastIndex--;
 		goDown();
 
