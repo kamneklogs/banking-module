@@ -29,16 +29,23 @@
       <RadioButton fx:id="ancientSpecialCRB" layoutX="194.0" layoutY="279.0" mnemonicParsing="false" text="Tercera edad" toggleGroup="$specialCondicions" />
       <RadioButton fx:id="discapacitySpecialCRB" layoutX="196.0" layoutY="313.0" mnemonicParsing="false" text="Discapacidad" toggleGroup="$specialCondicions" />
       <RadioButton fx:id="pregnancySpecialCRB" layoutX="196.0" layoutY="344.0" mnemonicParsing="false" text="Embarazo o  niños en brazos" toggleGroup="$specialCondicions" />
-      <Button layoutX="215.0" layoutY="383.0" mnemonicParsing="false" onAction="#enqueueUserBtn" text="Asignar turno" />
-      <Label fx:id="queueLabel" layoutX="24.0" layoutY="504.0" text="Label">
+      <Button layoutX="233.0" layoutY="398.0" mnemonicParsing="false" onAction="#enqueueUserBtn" text="Asignar turno" />
+      <Label fx:id="queueLabel" layoutX="24.0" layoutY="522.0" text="Label">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Label fx:id="priorityLabel" layoutX="24.0" layoutY="433.0" text="Label">
+      <Label fx:id="priorityLabel" layoutX="24.0" layoutY="468.0" text="Label">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
+      <Label layoutX="429.0" layoutY="132.0" text="Seleccione su genero" />
+      <RadioButton fx:id="girlRB" layoutX="429.0" layoutY="164.0" mnemonicParsing="false" text="Mujer">
+         <toggleGroup>
+            <ToggleGroup fx:id="gender" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="boyRB" layoutX="429.0" layoutY="202.0" mnemonicParsing="false" text="Hombre" toggleGroup="$gender" />
    </children>
 </Pane>

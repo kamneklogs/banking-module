@@ -54,6 +54,15 @@ public class BankController {
 	@FXML
 	private Pane mainPane;
 
+	@FXML
+    private RadioButton girlRB;
+
+    @FXML
+    private ToggleGroup gender;
+
+    @FXML
+    private RadioButton boyRB;
+
 	String msgQueue;
 
 	String msgPriority;
@@ -61,8 +70,8 @@ public class BankController {
 	public BankController() {
 		queueModule = new QueueModule();
 		cashierModule = new CashierModule();
-		msgQueue = "Estado actual fila simple: ";
-		msgPriority = "Estado actual fila prioridad: ";
+		msgQueue = "";
+		msgPriority = "";
 	}
 
 	public void initialize() {
@@ -132,11 +141,12 @@ public class BankController {
 		mainPane.getChildren().clear();
 		mainPane.getChildren().add(clientAccount);
 
-		msgQueue += queueModule.returnQueue()[0];
+		String[] msgs = queueModule.returnQueue();
+
+		msgQueue += msgs[0];
 		queueLabel.setText(msgQueue);
 
-		msgPriority += queueModule.returnQueue()[1];
-		System.out.println(msgPriority);
+		msgPriority = msgs[1];
 		priorityLabel.setText(msgPriority);
 	}
 
@@ -172,8 +182,13 @@ public class BankController {
 				advertencia.showAndWait();
 
 			}
-			System.out.println(specialCondition);
-			User theNew = new User(name, id, specialCondition);
+
+			boolean gender = false;
+			if(girlRB.isSelected()){
+				gender = true;
+			}
+
+			User theNew = new User(name, id, gender, specialCondition);
 			queueModule.receivePerson(theNew);
 
 			Alert advertencia = new Alert(AlertType.CONFIRMATION);

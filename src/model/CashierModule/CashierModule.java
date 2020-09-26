@@ -50,22 +50,22 @@ public class CashierModule {
 
 		// Partition A: Hash Table
 		if (theNew.getId() >= 0 && theNew.getId() < 250) {
-			addClientToPartitionA(new Client(theNew.getName(), theNew.getId(), balance, creditQuota, datePayC,
+			addClientToPartitionA(new Client(theNew.getName(), theNew.getId(), theNew.isGender(), balance, creditQuota, datePayC,
 					registrationDate, specialCondition));
 
 			// Partition B: ABB
 		} else if (theNew.getId() >= 250 && theNew.getId() < 500) {
 
-			addClientToPartitionB(new Client(theNew.getName(), theNew.getId(), balance, creditQuota, datePayC,
+			addClientToPartitionB(new Client(theNew.getName(), theNew.getId(), theNew.isGender(), balance, creditQuota, datePayC,
 					registrationDate, specialCondition));
 			// Partition C: LinkedList
 		} else if (theNew.getId() >= 500 && theNew.getId() < 750) {
-			addClientToPartitionC(new Client(theNew.getName(), theNew.getId(), balance, creditQuota, datePayC,
+			addClientToPartitionC(new Client(theNew.getName(), theNew.getId(), theNew.isGender(), balance, creditQuota, datePayC,
 					registrationDate, specialCondition));
 
 			// Partition D: Heaps
 		} else {
-			addClientToPartitionD(new Client(theNew.getName(), theNew.getId(), balance, creditQuota, datePayC,
+			addClientToPartitionD(new Client(theNew.getName(), theNew.getId(), theNew.isGender(), balance, creditQuota, datePayC,
 					registrationDate, specialCondition));
 		}
 

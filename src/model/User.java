@@ -6,15 +6,19 @@ public class User {
 	private String name;
 	private int id;
 	private int specialCondition;
+	// True girl
+	// False boy
+	private boolean gender;
 	// 0 No condicion especial
 	// 1 Tercera edad
 	// 2 Discapacidad
 	// 3 Embarazo y niños en brazos
 
-	public User(String name, int id, int specialCondition) {
+	public User(String name, int id, boolean gender, int specialCondition) {
 		this.name = name;
 		this.id = id;
 		this.specialCondition = specialCondition;
+		this.gender = gender;
 	}
 
 	public String getName() {
@@ -45,11 +49,6 @@ public class User {
 		return specialCondition;
 	}
 
-
-
-
-
-
 	public int compareTo2(User u) {
 		if (getSpecialCondition() > u.getSpecialCondition()) {
 			return 1;
@@ -60,6 +59,15 @@ public class User {
 			return -1;
 		}
 	}
+
+	public boolean isGender() {
+		return gender;
+	}
+
+	public void setGender(boolean gender) {
+		this.gender = gender;
+	}
+	
 
 
 

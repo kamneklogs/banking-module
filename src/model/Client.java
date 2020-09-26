@@ -11,9 +11,9 @@ public class Client extends User implements Comparable<Client> {
 	private Date datePayC, registrationDate;
 
 	// Politica de banco: para limite credito sera balance*0.1
-	public Client(String name, int id, double balance, double creditQuota, Date datePayC, Date registrationDate,
+	public Client(String name, int id, boolean gender, double balance, double creditQuota, Date datePayC, Date registrationDate,
 			int specialCondition) {
-		super(name, id, specialCondition);
+		super(name, id, gender, specialCondition);
 		this.balance = balance;
 		this.creditQuota = creditQuota;
 		this.datePayC = datePayC;

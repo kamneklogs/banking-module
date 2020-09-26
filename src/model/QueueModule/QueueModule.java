@@ -38,17 +38,16 @@ public class QueueModule {
         String msgSimpleQueue = "";
         String msgPriorityQueue = "";
         for (int i = 0; i < simpleQueue.getSize(); i++) {
-            int chose = (int) (Math.random() * (3 - 1) + 1);
-            if (chose == 1) {
-                // Hombre
-                msgSimpleQueue = "\uD83D\uDC71\u200D\u2642\uFE0F";
-
-            } else {
+            if (simpleQueue.getLast().getV().isGender()) {
                 // Mujer
                 msgSimpleQueue = "\uD83D\uDEB6\u200D\u2640\uFE0F";
+        
+            } else {
+                 // Hombre
+                 msgSimpleQueue = "\uD83D\uDC71\u200D\u2642\uFE0F";
             }
         }
-        for (int i = 1; i < priorityQueue.lastIndex; i++) {
+        for (int i = 1; i <= priorityQueue.lastIndex; i++) {
 
             switch (priorityQueue.getHeap()[i].getSpecialCondition()) {
 
@@ -59,7 +58,7 @@ public class QueueModule {
                     msgPriorityQueue += "\uD83D\uDC68\u200D\uD83E\uDDBD";
                     break;
                 case 3:
-                    msgPriorityQueue += "\uD83E\uDD30";
+                    msgPriorityQueue += "\uD83D\uDC69\u200D\uD83C\uDF7C";
                     break;
 
             }
