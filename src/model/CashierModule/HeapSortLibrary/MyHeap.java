@@ -53,15 +53,18 @@ public class MyHeap {
 		while(l<elements.size()) {
 			int max=l;
 			int r=l+1;
-			if(r<elements.size()) { //hay un hijo drecho
-				if(elements.get(r).compareTo2(elements.get(l))>0) {
-					//switch
-					User temp = elements.get(k);
-					elements.set(k, elements.get(max));
-					elements.set(max, temp);
-					k=max;
-					l=2*k+1;
+			if(r<elements.size()) { //hay un hijo izquierdo
+				if(elements.get(r).getId()> elements.get(l).getId()) {
+					max++;
 				}
+			}
+			if(elements.get(k).getId()<elements.get(max).getId()) {
+				//switch
+				User temp= elements.get(k);
+				elements.set(k, elements.get(max));
+				elements.set(max, temp);
+				k=max;
+				l=2*k+1;
 			}else {
 				break;
 			}

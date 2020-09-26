@@ -1,6 +1,7 @@
 package model.QueueModule.PriorityQueueue;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import model.User;
 
@@ -49,30 +50,32 @@ public class MyHeap {
         goUp();
     }
 
-    private void goDown() {
-        int k = 0;
-        int l = 2 * k + 1;
-        while (l < elements.size()) {
-            int max = l, r = l + 1;
-            // compTo(element.get(r), element)
-            if (r < elements.size()) { // hay un hijo derecho
-                if (elements.get(r).getSpecialCondition() > elements.get(l).getSpecialCondition()) {
-                    // cambiar
-                    User temp = elements.get(k);
-                    elements.set(k, elements.get(max));
-                    elements.set(max, temp);
-                    k = max;
-                    l = 2 * k + 1;
-                }
-            } else {
-                break;
-            }
-        }
-    }
+	private void goDown() {
+		int k = 0;
+		int l = 2*k+1;
+		while (l < elements.size()) {
+			int max=l, r=l+1;
+			if (r < elements.size()) { // there is a right child
+				if ( elements.get(r).getId()> elements.get(l).getId()) {
+					max++;
+				}
+			}
+			if (elements.get(k).getId() < elements.get(max).getId()) { 
+					// switch
+					User temp = elements.get(k);
+					elements.set(k, elements.get(max));
+					elements.set(max, temp);
+					k = max;
+					l = 2*k+1;
+			} else {
+				break;
+			}
+		}
+	}
 
     public User deleteElement() {
         if (elements.size() == 0) {
-
+        	throw new NoSuchElementException();
         }
         if (elements.size() == 1) {
             return elements.remove(0);
