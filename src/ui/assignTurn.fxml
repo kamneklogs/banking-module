@@ -30,12 +30,12 @@
       <RadioButton fx:id="discapacitySpecialCRB" layoutX="196.0" layoutY="313.0" mnemonicParsing="false" text="Discapacidad" toggleGroup="$specialCondicions" />
       <RadioButton fx:id="pregnancySpecialCRB" layoutX="196.0" layoutY="344.0" mnemonicParsing="false" text="Embarazo o  niños en brazos" toggleGroup="$specialCondicions" />
       <Button layoutX="233.0" layoutY="398.0" mnemonicParsing="false" onAction="#enqueueUserBtn" text="Asignar turno" />
-      <Label fx:id="queueLabel" layoutX="24.0" layoutY="522.0" text="Label">
+      <Label fx:id="queueLabel" layoutX="235.0" layoutY="516.0" text="Label">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Label fx:id="priorityLabel" layoutX="24.0" layoutY="468.0" text="Label">
+      <Label fx:id="priorityLabel" layoutX="235.0" layoutY="465.0" text="Label">
          <font>
             <Font size="30.0" />
          </font>
@@ -47,5 +47,15 @@
          </toggleGroup>
       </RadioButton>
       <RadioButton fx:id="boyRB" layoutX="429.0" layoutY="202.0" mnemonicParsing="false" text="Hombre" toggleGroup="$gender" />
+      <Label layoutX="10.0" layoutY="471.0" text="Estado fila prioridad:">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="521.0" text="Estado fila simple:">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
