@@ -24,15 +24,49 @@ public class BankController {
 
 	private CashierModule cashierModule;
 
+	@FXML
+    private TextField nameUserLbl;
 
+    @FXML
+    private TextField idUserLbl1;
+
+    @FXML
+    private RadioButton nonSpecialCRB;
+
+    @FXML
+    private ToggleGroup specialCondicions;
+
+    @FXML
+    private RadioButton ancientSpecialCRB;
+
+    @FXML
+    private RadioButton discapacitySpecialCRB;
+
+    @FXML
+    private RadioButton pregnancySpecialCRB;
+
+	@FXML
+	private Label priorityLabel;
+
+	@FXML
+	private Label queueLabel;
 
 	@FXML
 	private Pane mainPane;
 
-	public void initialize(){
-		
+	String msgQueue;
+
+	String msgPriority;
+
+	public BankController(){
 		queueModule= new QueueModule();
 		cashierModule = new CashierModule();
+		msgQueue = "Estado actual fila simple: ";
+		msgPriority = "Estado actual fila prioridad: ";
+	}
+
+	public void initialize(){
+		
 	}
 
 	@FXML
@@ -91,49 +125,26 @@ public class BankController {
 	}
 
 	@FXML
-	void seeQueuesState(ActionEvent event) throws IOException {
-
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("seeQueuesState.fxml"));
-		fxmlLoader.setController(this);
-		Parent clientAccount = fxmlLoader.load();
-		mainPane.getChildren().clear();
-		mainPane.getChildren().add(clientAccount);
-	}
-
-	@FXML
 	void assignTurn(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("assignTurn.fxml"));
 		fxmlLoader.setController(this);
 		Parent clientAccount = fxmlLoader.load();
 		mainPane.getChildren().clear();
 		mainPane.getChildren().add(clientAccount);
+
+		msgQueue += queueModule.returnQueue()[0];
+		queueLabel.setText(msgQueue);
+
+		msgPriority = queueModule.returnQueue()[1];
+		priorityLabel.setText(msgPriority);
 	}
-    @FXML
-    private TextField nameUserLbl;
 
-    @FXML
-    private TextField idUserLbl1;
-
-    @FXML
-    private RadioButton nonSpecialCRB;
-
-    @FXML
-    private ToggleGroup specialCondicions;
-
-    @FXML
-    private RadioButton ancientSpecialCRB;
-
-    @FXML
-    private RadioButton discapacitySpecialCRB;
-
-    @FXML
-    private RadioButton pregnancySpecialCRB;
 
     @FXML
     void enqueueUserBtn(ActionEvent event) throws IOException {
+
     	try {
         	String name= nameUserLbl.getText();
-
         	
         	int id= Integer.parseInt(idUserLbl1.getText());
         	
@@ -143,12 +154,12 @@ public class BankController {
         		advertencia.initStyle(StageStyle.DECORATED);
         		advertencia.setContentText("El número de identificación debería contener 3 dígitos exactamente");
         		advertencia.showAndWait();
-        	}
+			}
         	int specialCondition=-1;
         	if(nonSpecialCRB.isSelected()) {
-        		specialCondition=0;
+				specialCondition=0;
         	}else if(ancientSpecialCRB.isSelected()) {
-        		specialCondition=1;
+				specialCondition=1;
         	}else if(discapacitySpecialCRB.isSelected()) {
         		specialCondition=2;
         	}else if(pregnancySpecialCRB.isSelected()) {
@@ -160,18 +171,18 @@ public class BankController {
         		advertencia.setContentText("Tiene que seleccionar una opción");
         		advertencia.showAndWait();
         		
-        	}
+			}
+			System.out.println(specialCondition);
         	User theNew = new User(name, id, specialCondition);
         	queueModule.receivePerson(theNew);
         	
         	Alert advertencia = new Alert(AlertType.CONFIRMATION);
     		advertencia.setTitle("CONFIRMACIÓN");
     		advertencia.initStyle(StageStyle.DECORATED);
-    		advertencia.setContentText("Generación de turno exitosa. Acontinuación se le mostrará el estado de la fila");
+    		advertencia.setContentText("Generación de turno exitosa. A continuación se le mostrará el estado de la fila");
     		advertencia.showAndWait();
-
-    		
-    		seeQueuesState(event);
+			
+			assignTurn(event);
     	}catch(NumberFormatException e) {
     		Alert advertencia = new Alert(AlertType.ERROR);
     		advertencia.setTitle("ERROR DE FORMATO");
@@ -179,6 +190,7 @@ public class BankController {
     		advertencia.setContentText("Ingresó caracteres no numéricos en el id");
     		advertencia.show();
     	}
+
 
     }
 }
