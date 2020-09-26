@@ -40,7 +40,7 @@ public class QueueModule {
         for (int i = 0; i < simpleQueue.getSize(); i++) {
             if (simpleQueue.getLast().getV().isGender()) {
                 // Mujer
-                msgSimpleQueue = "\uD83D\uDEB6\u200D\u2640\uFE0F";
+                msgSimpleQueue = "\uD83D\uDC69\u200D\uD83E\uDDB1";
         
             } else {
                  // Hombre

@@ -55,23 +55,26 @@ public class BankController {
 	private Pane mainPane;
 
 	@FXML
-    private RadioButton girlRB;
+	private RadioButton girlRB;
 
-    @FXML
-    private ToggleGroup gender;
+	@FXML
+	private ToggleGroup gender;
 
-    @FXML
-    private RadioButton boyRB;
+	@FXML
+	private RadioButton boyRB;
 
 	String msgQueue;
 
 	String msgPriority;
+
+	String[] msgs;
 
 	public BankController() {
 		queueModule = new QueueModule();
 		cashierModule = new CashierModule();
 		msgQueue = "";
 		msgPriority = "";
+		msgs = new String[2];
 	}
 
 	public void initialize() {
@@ -141,13 +144,6 @@ public class BankController {
 		mainPane.getChildren().clear();
 		mainPane.getChildren().add(clientAccount);
 
-		String[] msgs = queueModule.returnQueue();
-
-		msgQueue += msgs[0];
-		queueLabel.setText(msgQueue);
-
-		msgPriority = msgs[1];
-		priorityLabel.setText(msgPriority);
 	}
 
 	@FXML
@@ -184,7 +180,7 @@ public class BankController {
 			}
 
 			boolean gender = false;
-			if(girlRB.isSelected()){
+			if (girlRB.isSelected()) {
 				gender = true;
 			}
 
@@ -198,8 +194,20 @@ public class BankController {
 					.setContentText("Generación de turno exitosa. A continuación se le mostrará el estado de la fila");
 			advertencia.showAndWait();
 
+			msgs = queueModule.returnQueue();
+
+			if (nonSpecialCRB.isSelected()) {
+				msgQueue += msgs[0];
+				queueLabel.setText(msgQueue);
+			} else {
+				msgPriority = msgs[1];
+				priorityLabel.setText(msgPriority);
+			}
+
 			assignTurn(event);
-		} catch (NumberFormatException e) {
+		} catch (
+
+		NumberFormatException e) {
 			Alert advertencia = new Alert(AlertType.ERROR);
 			advertencia.setTitle("ERROR DE FORMATO");
 			advertencia.initStyle(StageStyle.DECORATED);
