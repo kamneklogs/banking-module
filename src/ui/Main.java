@@ -11,7 +11,9 @@ public class Main extends Application {
 	private BankController bc;
 
 	public Main() {
+
 		bc = new BankController();
+
 	}
 
 	public static void main(String[] args) {
@@ -22,6 +24,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+
 		FXMLLoader fxmll = new FXMLLoader(getClass().getResource("Main.fxml"));
 		fxmll.setController(bc);
 		Parent root = fxmll.load();
@@ -30,6 +33,7 @@ public class Main extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Banking & service");
 		primaryStage.show();
+
 	}
 
 }

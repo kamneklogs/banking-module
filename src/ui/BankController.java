@@ -1,12 +1,16 @@
 package ui;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -69,6 +73,8 @@ public class BankController {
 
 	String[] msgs;
 
+	private User current;
+
 	public BankController() {
 		queueModule = new QueueModule();
 		cashierModule = new CashierModule();
@@ -88,6 +94,26 @@ public class BankController {
 		Parent clientAccount = fxmlLoader.load();
 		mainPane.getChildren().clear();
 		mainPane.getChildren().add(clientAccount);
+
+		List<String> choices = new ArrayList<>();
+		choices.add("Prioridad");
+		choices.add("Simple");
+
+		ChoiceDialog<String> dialog = new ChoiceDialog<>("Seleccione", choices);
+		dialog.setTitle("Siguiente turno");
+		dialog.setHeaderText("Elija a la fila que desea atender");
+		dialog.setContentText("Filas:");
+
+		Optional<String> result = dialog.showAndWait();
+
+		String r = result.get();
+
+		if (r.equals("Simple")) {
+			cashierModule.setCurrent(queueModule.getCurrenWithoutPriority());
+		} else {
+			cashierModule.setCurrent(queueModule.getCurrentWithPriority());
+		}
+
 	}
 
 	@FXML
@@ -205,15 +231,19 @@ public class BankController {
 			}
 
 			assignTurn(event);
+
 		} catch (
 
 		NumberFormatException e) {
+
 			Alert advertencia = new Alert(AlertType.ERROR);
 			advertencia.setTitle("ERROR DE FORMATO");
 			advertencia.initStyle(StageStyle.DECORATED);
 			advertencia.setContentText("Ingresó caracteres no numéricos en el id");
 			advertencia.show();
+
 		}
 
 	}
+
 }

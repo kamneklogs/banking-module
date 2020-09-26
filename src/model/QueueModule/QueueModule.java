@@ -8,7 +8,6 @@ public class QueueModule {
 
     public IQueue<User> simpleQueue;
     private PriorityQueueHeap priorityQueue;
-    private User current, next;
 
     public QueueModule() {
         simpleQueue = new Queue<User>();
@@ -39,12 +38,13 @@ public class QueueModule {
         String msgPriorityQueue = "";
         for (int i = 0; i < simpleQueue.getSize(); i++) {
             if (simpleQueue.getLast().getV().isGender()) {
-                // Mujer
+
                 msgSimpleQueue = "\uD83D\uDC69\u200D\uD83E\uDDB1";
-        
+
             } else {
-                 // Hombre
-                 msgSimpleQueue = "\uD83D\uDC71\u200D\u2642\uFE0F";
+
+                msgSimpleQueue = "\uD83D\uDC71\u200D\u2642\uFE0F";
+
             }
         }
         for (int i = 1; i <= priorityQueue.lastIndex; i++) {
@@ -78,20 +78,31 @@ public class QueueModule {
         this.simpleQueue = simpleQueue;
     }
 
-    public User getCurrent() {
-        return current;
+    public User getCurrentWithPriority() {
+        User temp = priorityQueue.getHeap()[1];
+
+        dequeueCurrentWithPriority();
+        return temp;
     }
 
-    public void setCurrent(User current) {
-        this.current = current;
+    public User getCurrenWithoutPriority() {
+
+        User temp = priorityQueue.getHeap()[1];
+
+        dequeueCurrentWithoutPriority();
+        return temp;
     }
 
-    public User getNext() {
-        return next;
+    private void dequeueCurrentWithoutPriority() {
+
+        simpleQueue.dequeue();
+
     }
 
-    public void setNext(User next) {
-        this.next = next;
+    private void dequeueCurrentWithPriority() {
+
+        priorityQueue.dequeue();
+
     }
 
 }

@@ -15,7 +15,7 @@ import model.CashierModule.LinkedListLibrary.MyDoublyLinkedList;
 
 public class CashierModule {
 
-	private User current, next;
+	private User current;
 
 	private IMyHashtable<Integer, Client> dataBasePartitionA;
 	private IMyBST<Client> dataBasePartitionB;
@@ -30,19 +30,15 @@ public class CashierModule {
 	}
 
 	public User getCurrent() {
+
 		return current;
+
 	}
 
 	public void setCurrent(User current) {
+
 		this.current = current;
-	}
 
-	public User getNext() {
-		return next;
-	}
-
-	public void setNext(User next) {
-		this.next = next;
 	}
 
 	public void signUpClient(User theNew, double balance, double creditQuota, Date datePayC, Date registrationDate,
@@ -50,23 +46,23 @@ public class CashierModule {
 
 		// Partition A: Hash Table
 		if (theNew.getId() >= 0 && theNew.getId() < 250) {
-			addClientToPartitionA(new Client(theNew.getName(), theNew.getId(), theNew.isGender(), balance, creditQuota, datePayC,
-					registrationDate, specialCondition));
+			addClientToPartitionA(new Client(theNew.getName(), theNew.getId(), theNew.isGender(), balance, creditQuota,
+					datePayC, registrationDate, specialCondition));
 
 			// Partition B: ABB
 		} else if (theNew.getId() >= 250 && theNew.getId() < 500) {
 
-			addClientToPartitionB(new Client(theNew.getName(), theNew.getId(), theNew.isGender(), balance, creditQuota, datePayC,
-					registrationDate, specialCondition));
+			addClientToPartitionB(new Client(theNew.getName(), theNew.getId(), theNew.isGender(), balance, creditQuota,
+					datePayC, registrationDate, specialCondition));
 			// Partition C: LinkedList
 		} else if (theNew.getId() >= 500 && theNew.getId() < 750) {
-			addClientToPartitionC(new Client(theNew.getName(), theNew.getId(), theNew.isGender(), balance, creditQuota, datePayC,
-					registrationDate, specialCondition));
+			addClientToPartitionC(new Client(theNew.getName(), theNew.getId(), theNew.isGender(), balance, creditQuota,
+					datePayC, registrationDate, specialCondition));
 
 			// Partition D: Heaps
 		} else {
-			addClientToPartitionD(new Client(theNew.getName(), theNew.getId(), theNew.isGender(), balance, creditQuota, datePayC,
-					registrationDate, specialCondition));
+			addClientToPartitionD(new Client(theNew.getName(), theNew.getId(), theNew.isGender(), balance, creditQuota,
+					datePayC, registrationDate, specialCondition));
 		}
 
 	}

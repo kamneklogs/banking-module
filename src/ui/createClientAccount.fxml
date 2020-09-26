@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-
-<Pane fx:id="mainPane" prefHeight="615.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" />
+<Pane prefHeight="575.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="35.0" layoutY="26.0" text="Crear cuenta" />
+      <Label layoutX="207.0" layoutY="83.0" text="Nombre:" />
+      <TextField editable="false" layoutX="281.0" layoutY="78.0" />
+      <Label layoutX="96.0" layoutY="133.0" text="Numero de identificacion:" />
+      <TextField editable="false" layoutX="281.0" layoutY="128.0" />
+      <Label layoutX="189.0" layoutY="175.0" text="Genero" />
+      <Label layoutX="132.0" layoutY="216.0" text="Monto de apertura:" />
+      <Label layoutX="12.0" layoutY="262.0" text="Cupo crediticio ofrecido por el banco:" />
+      <TextField layoutX="281.0" layoutY="211.0" />
+      <Button layoutX="466.0" layoutY="211.0" mnemonicParsing="false" text="Consignar" />
+      <Label layoutX="62.0" layoutY="313.0" text="Fecha de apertura de cuenta:" />
+      <TextField editable="false" layoutX="281.0" layoutY="309.0" />
+      <TextField editable="false" layoutX="281.0" layoutY="257.0" />
+      <TextField editable="false" layoutX="281.0" layoutY="170.0" />
+      <Button disable="true" layoutX="281.0" layoutY="413.0" mnemonicParsing="false" text="CREAR CUENTA">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
