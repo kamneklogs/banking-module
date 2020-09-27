@@ -14,11 +14,11 @@
       <Button layoutX="525.0" layoutY="127.0" mnemonicParsing="false" onAction="#searchClientButton" text="Buscar" />
       <Button fx:id="deleteAccountFinishButton" disable="true" layoutX="356.0" layoutY="403.0" mnemonicParsing="false" onAction="#deleteAccountFinishButton" text="Eliminar" />
       <Label layoutX="275.0" layoutY="211.0" text="Nombre" />
-      <TextField fx:id="nameToDeleteTF" layoutX="373.0" layoutY="206.0" />
+      <TextField fx:id="nameToDeleteTF" editable="false" layoutX="373.0" layoutY="206.0" />
       <Label layoutX="242.0" layoutY="251.0" text="Monto actual" />
-      <TextField fx:id="amountToDeleteTF" layoutX="371.0" layoutY="246.0" />
+      <TextField fx:id="amountToDeleteTF" editable="false" layoutX="371.0" layoutY="246.0" />
       <Label layoutX="202.0" layoutY="294.0" text="Fecha de apertura" />
-      <TextField fx:id="dateCreationToDeleteTF" layoutX="373.0" layoutY="289.0" />
+      <TextField fx:id="dateCreationToDeleteTF" editable="false" layoutX="373.0" layoutY="289.0" />
       <Button fx:id="undoDeleteAccountButton" disable="true" layoutX="352.0" layoutY="491.0" mnemonicParsing="false" onAction="#undoDeleteAccountButton" text="Deshacer" />
    </children>
 </Pane>
