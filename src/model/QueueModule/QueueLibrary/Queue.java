@@ -50,7 +50,7 @@ public class Queue<V> implements IQueue<V> {
         return last;
     }
 
-    public int getSize(){
+    public int getSize() {
         return size;
     }
 

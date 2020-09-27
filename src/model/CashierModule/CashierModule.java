@@ -21,12 +21,16 @@ public class CashierModule {
 	private IMyBST<Client> dataBasePartitionB;
 	private IMyDoublyLinkedList<Client> dataBasePartitionC;
 	private ArrayList<Client> dataBasePartitionD;
+	private ArrayList<Client> desertersClients;
+	ArrayList<Client> allClients;
 
 	public CashierModule() {
 		dataBasePartitionA = new MyHashtable<Integer, Client>();
 
 		dataBasePartitionC = new MyDoublyLinkedList<Client>();
 		dataBasePartitionD = new ArrayList<Client>();
+		allClients = new ArrayList<Client>();
+		desertersClients = new ArrayList<Client>();
 	}
 
 	public User getCurrent() {
@@ -41,28 +45,26 @@ public class CashierModule {
 
 	}
 
-	public void signUpClient(User theNew, double balance, double creditQuota, Date datePayC, Date registrationDate,
-			int specialCondition) {
+	public void signUpClient(User theNew, double balance, double creditQuota, String today, int specialCondition) {
+
+		Client tN = new Client(theNew.getName(), theNew.getId(), theNew.isGender(), balance, creditQuota, today,
+				specialCondition);
 
 		// Partition A: Hash Table
 		if (theNew.getId() >= 0 && theNew.getId() < 250) {
-			addClientToPartitionA(new Client(theNew.getName(), theNew.getId(), theNew.isGender(), balance, creditQuota,
-					datePayC, registrationDate, specialCondition));
+			addClientToPartitionA(tN);
 
 			// Partition B: ABB
 		} else if (theNew.getId() >= 250 && theNew.getId() < 500) {
 
-			addClientToPartitionB(new Client(theNew.getName(), theNew.getId(), theNew.isGender(), balance, creditQuota,
-					datePayC, registrationDate, specialCondition));
+			addClientToPartitionB(tN);
 			// Partition C: LinkedList
 		} else if (theNew.getId() >= 500 && theNew.getId() < 750) {
-			addClientToPartitionC(new Client(theNew.getName(), theNew.getId(), theNew.isGender(), balance, creditQuota,
-					datePayC, registrationDate, specialCondition));
+			addClientToPartitionC(tN);
 
 			// Partition D: Heaps
 		} else {
-			addClientToPartitionD(new Client(theNew.getName(), theNew.getId(), theNew.isGender(), balance, creditQuota,
-					datePayC, registrationDate, specialCondition));
+			addClientToPartitionD(tN);
 		}
 
 	}
@@ -87,11 +89,12 @@ public class CashierModule {
 	}
 
 	public ArrayList<Client> unifyClients() {
-		ArrayList<Client> allClients = new ArrayList<Client>();
+
+		allClients.clear();
 
 		allClients.addAll(dataBasePartitionA.generateArrayList());
 
-		allClients.addAll(dataBasePartitionB.generateArrayList());
+		// allClients.addAll(dataBasePartitionB.generateArrayList());
 
 		// linked list
 
@@ -116,23 +119,70 @@ public class CashierModule {
 	}
 
 	public Client searchClient(int id) {
-		return dataBasePartitionA.get(id);
+
+		unifyClients();
+
+		for (int i = 0; i < allClients.size(); i++) {
+			if (allClients.get(i).getId() == id) {
+				return allClients.get(i);
+			}
+		}
+
+		return null;
 
 	}
 
 	public boolean deleteClientAccount(int id) {
 
-		if (dataBasePartitionA.remove(id) == null) {
-			return false;
+		desertersClients.add(searchClient(id));
+
+		// Partition A: Hash Table
+		if (id >= 0 && id < 250) {
+
+			dataBasePartitionA.remove(id);
+
+			// Partition B: ABB
+		} else if (id >= 250 && id < 500) {
+
+			dataBasePartitionB.removeNode(searchClient(id));
+			// Partition C: LinkedList
+		} else if (id >= 500 && id < 750) {
+
+			dataBasePartitionC.remove(id);
+
 		} else {
-			return true;
+
+			for (int i = 0; i < dataBasePartitionD.size(); i++) {
+				if (dataBasePartitionD.get(i).getId() == id) {
+					dataBasePartitionD.remove(i);
+					i = dataBasePartitionD.size();
+				}
+			}
+
 		}
+
+		for (int i = 0; i < allClients.size(); i++) {
+			if (allClients.get(i).getId() == id) {
+				allClients.remove(i);
+			}
+		}
+
+		return true;
+
 	}
 
 	public void doPay(int idUser, double amount) {
 
 		Client c = searchClient(idUser);
 		c.setBalance(c.getBalance() + amount);
+	}
+
+	public ArrayList<Client> getDesertersClients() {
+		return desertersClients;
+	}
+
+	public void setDesertersClients(ArrayList<Client> desertersClients) {
+		this.desertersClients = desertersClients;
 	}
 
 }

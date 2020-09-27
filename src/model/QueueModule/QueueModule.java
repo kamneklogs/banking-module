@@ -87,7 +87,7 @@ public class QueueModule {
 
     public User getCurrenWithoutPriority() {
 
-        User temp = priorityQueue.getHeap()[1];
+        User temp = simpleQueue.front().getV();
 
         dequeueCurrentWithoutPriority();
         return temp;

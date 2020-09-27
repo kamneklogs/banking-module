@@ -8,16 +8,16 @@ public class Client extends User implements Comparable<Client> {
 	private double creditQuota, limit;
 
 	// Pago de tarjeta de credito y fecha de registro
-	private Date datePayC, registrationDate;
+	private String registrationDate;
 
 	// Politica de banco: para limite credito sera balance*0.1
-	public Client(String name, int id, boolean gender, double balance, double creditQuota, Date datePayC, Date registrationDate,
+	public Client(String name, int id, boolean gender, double balance, double creditQuota, String today,
 			int specialCondition) {
 		super(name, id, gender, specialCondition);
 		this.balance = balance;
 		this.creditQuota = creditQuota;
-		this.datePayC = datePayC;
-		this.registrationDate = registrationDate;
+
+		this.registrationDate = today;
 		limit = balance * 0.1;
 	}
 
@@ -33,19 +33,11 @@ public class Client extends User implements Comparable<Client> {
 		return limit - creditQuota;
 	}
 
-	public Date getDatePayC() {
-		return datePayC;
-	}
-
-	public void setDatePayC(Date datePayC) {
-		this.datePayC = datePayC;
-	}
-
-	public Date getRegistrationDate() {
+	public String getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(Date registrationDate) {
+	public void setRegistrationDate(String registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 
