@@ -33,41 +33,40 @@ public class QueueModule {
         return true;
     }
 
-    public String[] returnQueue() {
-        String msgSimpleQueue = "";
-        String msgPriorityQueue = "";
-        for (int i = 0; i < simpleQueue.getSize(); i++) {
-            if (simpleQueue.getLast().getV().isGender()) {
+    public String returnQueue(int opcion) {
+        String msgReturn = "";
+        if (opcion == 0) {
+            for (int i = 0; i < simpleQueue.getSize(); i++) {
+                if (simpleQueue.getLast().getV().isGender()) {
+                    // Mujer
+                    msgReturn = "\uD83D\uDC69\u200D\uD83E\uDDB1";
 
-                msgSimpleQueue = "\uD83D\uDC69\u200D\uD83E\uDDB1";
+                } else {
+                    // Hombre
+                    msgReturn = "\uD83D\uDC71\u200D\u2642\uFE0F";
+                }
+            }
+        } else {
+            for (int i = 1; i <= priorityQueue.lastIndex; i++) {
 
-            } else {
+                switch (priorityQueue.getHeap()[i].getSpecialCondition()) {
 
-                msgSimpleQueue = "\uD83D\uDC71\u200D\u2642\uFE0F";
+                    case 1:
+                        msgReturn += "\uD83D\uDC68\u200D\uD83E\uDDAF";
+                        break;
+                    case 2:
+                        msgReturn += "\uD83D\uDC68\u200D\uD83E\uDDBD";
+                        break;
+                    case 3:
+                        msgReturn += "\uD83D\uDC69\u200D\uD83C\uDF7C";
+                        break;
+
+                }
 
             }
-        }
-        for (int i = 1; i <= priorityQueue.lastIndex; i++) {
-
-            switch (priorityQueue.getHeap()[i].getSpecialCondition()) {
-
-                case 1:
-                    msgPriorityQueue += "\uD83D\uDC68\u200D\uD83E\uDDAF";
-                    break;
-                case 2:
-                    msgPriorityQueue += "\uD83D\uDC68\u200D\uD83E\uDDBD";
-                    break;
-                case 3:
-                    msgPriorityQueue += "\uD83D\uDC69\u200D\uD83C\uDF7C";
-                    break;
-
-            }
 
         }
-        String[] arreglo = new String[2];
-        arreglo[0] = msgSimpleQueue;
-        arreglo[1] = msgPriorityQueue;
-        return arreglo;
+        return msgReturn;
     }
 
     public IQueue<User> getSimpleQueue() {

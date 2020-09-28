@@ -114,9 +114,10 @@ public class BankController {
 
 	String msgPriority;
 
-	String[] msgs;
+	int seleccion;
 
 	private User current;
+
 	private Client toDelete;
 
 	public BankController() {
@@ -124,7 +125,7 @@ public class BankController {
 		cashierModule = new CashierModule();
 		msgQueue = "";
 		msgPriority = "";
-		msgs = new String[2];
+		seleccion = -1;
 	}
 
 	public void initialize() {
@@ -225,6 +226,13 @@ public class BankController {
 		mainPane.getChildren().clear();
 		mainPane.getChildren().add(clientAccount);
 
+		if (seleccion == 0) {
+			msgQueue += queueModule.returnQueue(seleccion);
+		} else {
+			msgPriority = queueModule.returnQueue(seleccion);
+		}
+		queueLabel.setText(msgQueue);
+		priorityLabel.setText(msgPriority);
 	}
 
 	@FXML
@@ -242,6 +250,7 @@ public class BankController {
 				advertencia.setContentText("El número de identificación debería contener 3 dígitos exactamente");
 				advertencia.showAndWait();
 			}
+			
 			int specialCondition = -1;
 			if (nonSpecialCRB.isSelected()) {
 				specialCondition = 0;
@@ -272,17 +281,13 @@ public class BankController {
 			advertencia.setTitle("CONFIRMACIÓN");
 			advertencia.initStyle(StageStyle.DECORATED);
 			advertencia
-					.setContentText("Generación de turno exitosa. A continuación se le mostrará el estado de la fila");
+					.setContentText("Generación de turno exitosa./nA continuación se le mostrará el estado de la fila");
 			advertencia.showAndWait();
 
-			msgs = queueModule.returnQueue();
-
 			if (nonSpecialCRB.isSelected()) {
-				msgQueue += msgs[0];
-				queueLabel.setText(msgQueue);
+				seleccion = 0;
 			} else {
-				msgPriority = msgs[1];
-				priorityLabel.setText(msgPriority);
+				seleccion = 1;
 			}
 
 			assignTurn(event);
