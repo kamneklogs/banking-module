@@ -274,15 +274,25 @@ public class BankController {
 				gender = true;
 			}
 
-			User theNew = new User(name, id, gender, specialCondition);
-			queueModule.receivePerson(theNew);
+			if (specialCondition != -1 && !(name.equals("")) && !(idUserLbl1.getText().equals(""))) {
+				User theNew = new User(name, id, gender, specialCondition);
+				queueModule.receivePerson(theNew);
 
-			Alert advertencia = new Alert(AlertType.CONFIRMATION);
-			advertencia.setTitle("CONFIRMACIÓN");
-			advertencia.initStyle(StageStyle.DECORATED);
-			advertencia
-					.setContentText("Generación de turno exitosa./nA continuación se le mostrará el estado de la fila");
-			advertencia.showAndWait();
+				Alert advertencia = new Alert(AlertType.CONFIRMATION);
+				advertencia.setTitle("CONFIRMACIÓN");
+				advertencia.initStyle(StageStyle.DECORATED);
+				advertencia.setContentText(
+						"Generación de turno exitosa." + "/n" + "A continuación se le mostrará el estado de la fila");
+				advertencia.showAndWait();
+			} else {
+				Alert advertencia = new Alert(AlertType.ERROR);
+				advertencia.setTitle("DATOS INCOMPLETOS");
+				advertencia.initStyle(StageStyle.DECORATED);
+				advertencia.setContentText(
+						"No ha ingresado los datos completos, revise por favor");
+				advertencia.showAndWait();
+			}
+
 
 			if (nonSpecialCRB.isSelected()) {
 				seleccion = 0;
@@ -299,7 +309,7 @@ public class BankController {
 			Alert advertencia = new Alert(AlertType.ERROR);
 			advertencia.setTitle("ERROR DE FORMATO");
 			advertencia.initStyle(StageStyle.DECORATED);
-			advertencia.setContentText("Ingresó caracteres no numéricos en el id");
+			advertencia.setContentText("Ingresó caracteres no numéricos en el ID");
 			advertencia.show();
 
 		}
