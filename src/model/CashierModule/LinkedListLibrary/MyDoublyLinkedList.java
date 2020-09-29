@@ -250,6 +250,16 @@ public class MyDoublyLinkedList<E extends Comparable> implements IMyDoublyLinked
 		}
 		return data;
 	}
+	
+	/**
+	 * Ask if the DoublyLinkedList has elements
+	 * @return a boolean that indicates if the DoublyLinkedList is empty
+	 */
+
+	@Override
+	public boolean isEmpty() {
+		return head==null;
+	}
 
 	/**
 	 * Generates an ArrayList with the data stored in the nodes of the linked list
@@ -274,6 +284,8 @@ public class MyDoublyLinkedList<E extends Comparable> implements IMyDoublyLinked
 		Collections.sort(theaL);
 		return theaL;
 	}
+	
+
 
 
 
