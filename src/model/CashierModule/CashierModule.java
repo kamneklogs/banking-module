@@ -6,6 +6,7 @@ import java.util.Date;
 import model.Client;
 import model.User;
 import model.CashierModule.ABBLibrary.IMyBST;
+import model.CashierModule.ABBLibrary.MyBST;
 import model.CashierModule.HashTableLibrary.IMyHashtable;
 import model.CashierModule.HashTableLibrary.MyHashtable;
 import model.CashierModule.HeapSortLibrary.HeapSort;
@@ -26,7 +27,7 @@ public class CashierModule {
 
 	public CashierModule() {
 		dataBasePartitionA = new MyHashtable<Integer, Client>();
-
+		dataBasePartitionB = new MyBST<Client>();
 		dataBasePartitionC = new MyDoublyLinkedList<Client>();
 		dataBasePartitionD = new ArrayList<Client>();
 		allClients = new ArrayList<Client>();
@@ -94,7 +95,7 @@ public class CashierModule {
 
 		allClients.addAll(dataBasePartitionA.generateArrayList());
 
-		// allClients.addAll(dataBasePartitionB.generateArrayList());
+		allClients.addAll(dataBasePartitionB.generateArrayList());
 
 		// linked list
 

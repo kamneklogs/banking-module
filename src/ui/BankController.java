@@ -13,9 +13,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -250,7 +250,7 @@ public class BankController {
 				advertencia.setContentText("El número de identificación debería contener 3 dígitos exactamente");
 				advertencia.showAndWait();
 			}
-			
+
 			int specialCondition = -1;
 			if (nonSpecialCRB.isSelected()) {
 				specialCondition = 0;
@@ -288,11 +288,9 @@ public class BankController {
 				Alert advertencia = new Alert(AlertType.ERROR);
 				advertencia.setTitle("DATOS INCOMPLETOS");
 				advertencia.initStyle(StageStyle.DECORATED);
-				advertencia.setContentText(
-						"No ha ingresado los datos completos, revise por favor");
+				advertencia.setContentText("No ha ingresado los datos completos, revise por favor");
 				advertencia.showAndWait();
 			}
-
 
 			if (nonSpecialCRB.isSelected()) {
 				seleccion = 0;
@@ -333,8 +331,6 @@ public class BankController {
 		DateFormat dF = new SimpleDateFormat("dd/MM/yyyy");
 
 		today = dF.format(date);
-
-		System.out.println(date.toString());
 
 		currentDateTF.setText(today);
 
