@@ -24,11 +24,11 @@
         <menus>
           <Menu mnemonicParsing="false" text="Módulo caja">
             <items>
-              <MenuItem mnemonicParsing="false" text="Realizar consignación" />
+              <MenuItem mnemonicParsing="false" onAction="#doPayOption" text="Realizar consignación" />
                   <MenuItem mnemonicParsing="false" onAction="#createAClientAccount" text="Crear cuenta bancaria" />
                   <MenuItem mnemonicParsing="false" onAction="#deleteClientAccount" text="Eliminar cuenta bancaria" />
-                  <MenuItem mnemonicParsing="false" text="Pagar tarjeta de crédito" />
-                  <MenuItem mnemonicParsing="false" text="Buscar un cliente en la base de datos" />
+                  <MenuItem mnemonicParsing="false" onAction="#payCreditCard" text="Pagar tarjeta de crédito" />
+                  <MenuItem mnemonicParsing="false" onAction="#searchAClient" text="Buscar un cliente en la base de datos" />
                   <MenuItem mnemonicParsing="false" text="Desplegar la lista total de clientes" />
             </items>
           </Menu>

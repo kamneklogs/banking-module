@@ -13,7 +13,7 @@
          <font>
             <Font name="Arial" size="20.0" />
          </font></Label>
-      <TextField fx:id="idToDeleteTF" layoutX="332.0" layoutY="140.0" prefHeight="25.0" prefWidth="199.0" promptText="Ingrese ID" text="ID cliente" />
+      <TextField fx:id="idToDeleteTF" layoutX="332.0" layoutY="140.0" prefHeight="25.0" prefWidth="199.0" promptText="Ingrese ID" />
       <Button layoutX="556.0" layoutY="136.0" mnemonicParsing="false" onAction="#searchClientButton" text="Buscar">
          <font>
             <Font name="Arial" size="18.0" />

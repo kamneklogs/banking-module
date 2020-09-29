@@ -112,6 +112,8 @@ public class BankController {
 
 	@FXML
 	private Label currentUserLbl;
+	@FXML
+	private TextField valuePay;
 
 	String msgQueue;
 
@@ -123,7 +125,47 @@ public class BankController {
 
 	private Client toDelete;
 
+	@FXML
+	private TextField idToDoPayTF;
+
+	@FXML
+	private TextField accountToDoPayTF;
+
+	@FXML
+	private Button doPayButton;
+
+	@FXML
+	private Button doPayCreditCardButton;
+
+	@FXML
+	private TextField IDToPayCreditCardTF;
+
+	@FXML
+	private TextField AccountToPayCreditCardTF;
+
+	@FXML
+	private TextField nameSearchTF;
+
+	@FXML
+	private TextField idToSearchTF;
+
+	@FXML
+	private TextField genderSearchTF;
+
+	@FXML
+	private TextField balanceSearchTF;
+
+	@FXML
+	private TextField creditSearchTF;
+
+	@FXML
+	private TextField creationSearchTF;
+
+	@FXML
+	private TextField specialConditionSearchTF;
+
 	public BankController() {
+
 		queueModule = new QueueModule();
 		cashierModule = new CashierModule();
 		msgQueue = "";
@@ -131,7 +173,7 @@ public class BankController {
 		seleccion = -1;
 		cashierModule.signUpClient(new User("Andrea", 001, true, 0), 322, 0, "29/09/2020", 0);
 		cashierModule.signUpClient(new User("Danna", 257, true, 2), 2, 3, "29/07/2020", 2);
-		cashierModule.signUpClient(new User("Camilo", 999, false, 0), 10000, 0, "29/09/2020", 0);
+		cashierModule.signUpClient(new User("Camilo", 999, true, 0), 10000, 0, "29/09/2020", 0);
 	}
 
 	@FXML
@@ -168,19 +210,12 @@ public class BankController {
 				cashierModule.setCurrent(current);
 			}
 
-			currentNameTF.setText(current.getName());
-			idCurrentTF.setText(current.getId() + "");
-
-			if (current.isGender()) {
-				genderCurrentTF.setText("Femenino");
-			} else {
-				genderCurrentTF.setText("Masculino");
-			}
 		} catch (Exception e) {
 			Alert advertencia = new Alert(AlertType.ERROR);
 			advertencia.setTitle("ACCION INVALIDA");
 			advertencia.initStyle(StageStyle.DECORATED);
 			advertencia.setContentText(e.getMessage());
+			e.printStackTrace();
 			advertencia.showAndWait();
 		}
 
@@ -243,6 +278,14 @@ public class BankController {
 			Parent clientAccount = fxmlLoader.load();
 			mainPane.getChildren().clear();
 			mainPane.getChildren().add(clientAccount);
+			currentNameTF.setText(current.getName());
+			idCurrentTF.setText(current.getId() + "");
+
+			if (current.isGender()) {
+				genderCurrentTF.setText("Femenino");
+			} else {
+				genderCurrentTF.setText("Masculino");
+			}
 
 		} catch (Exception e) {
 			Alert advertencia = new Alert(AlertType.ERROR);
@@ -482,4 +525,89 @@ public class BankController {
 		}
 	}
 
+	@FXML
+	void doPayButton(ActionEvent event) {
+		cashierModule.doPay(Integer.parseInt(idToDoPayTF.getText()), Double.parseDouble(accountToDoPayTF.getText()));
+
+		Alert advertencia = new Alert(AlertType.CONFIRMATION);
+		advertencia.setTitle("OPERACION EXITOSA");
+		advertencia.initStyle(StageStyle.DECORATED);
+		advertencia.setContentText("Se realizo la consignacion por valor de $" + accountToDoPayTF.getText()
+				+ "\na la cuenta con ID " + idToDoPayTF.getText());
+		advertencia.show();
+
+	}
+
+	@FXML
+	void verifyIDtoDoPay(ActionEvent event) {
+
+		if (cashierModule.searchClient(Integer.parseInt(idToDoPayTF.getText())) != null) {
+			accountToDoPayTF.setEditable(true);
+			doPayButton.setDisable(false);
+
+		} else {
+			Alert advertencia = new Alert(AlertType.WARNING);
+			advertencia.setTitle("USUARIO NO ENCONTRADO");
+			advertencia.initStyle(StageStyle.DECORATED);
+			advertencia.setContentText("El ID ingresado no se encuentra en la base de datos.\nPor favor verifique");
+			advertencia.show();
+		}
+	}
+
+	@FXML
+	void doPayCreditCardAccion(ActionEvent event) {
+
+	}
+
+	@FXML
+	void verifyIDToPayCreditCard(ActionEvent event) {
+		if (cashierModule.searchClient(Integer.parseInt(IDToPayCreditCardTF.getText())) != null) {
+
+			AccountToPayCreditCardTF.setText(
+					"" + cashierModule.searchClient(Integer.parseInt(IDToPayCreditCardTF.getText())).getCreditQuota());
+
+			if (cashierModule.searchClient(Integer.parseInt(IDToPayCreditCardTF.getText())).getCreditQuota() != 0) {
+				valuePay.setEditable(true);
+				doPayCreditCardButton.setDisable(false);
+			}
+
+		}
+	}
+
+	@FXML
+	void searchClientButtonAction(ActionEvent event) {
+
+		if (cashierModule.searchClient(Integer.parseInt(idToSearchTF.getText())) != null) {
+
+			Client temp = cashierModule.searchClient(Integer.parseInt(idToSearchTF.getText()));
+
+			nameSearchTF.setText(temp.getName());
+			if (temp.isGender()) {
+				genderSearchTF.setText("Mujer");
+			} else {
+				genderSearchTF.setText("Mujer");
+			}
+
+			balanceSearchTF.setText(temp.getBalance() + "");
+			creditSearchTF.setText(temp.getCreditQuota() + "");
+			creationSearchTF.setText(temp.getRegistrationDate());
+
+			if (temp.getSpecialCondition() == 0) {
+				specialConditionSearchTF.setText("Sin condicion especial");
+			} else if (temp.getSpecialCondition() == 1) {
+				specialConditionSearchTF.setText("Persona de la tercera edad");
+			} else if (temp.getSpecialCondition() == 2) {
+				specialConditionSearchTF.setText("Persona con discapacidad");
+			} else {
+				specialConditionSearchTF.setText("Mujer embarazada o persona con niño en brazos");
+			}
+		} else {
+			Alert advertencia = new Alert(AlertType.WARNING);
+			advertencia.setTitle("USUARIO NO ENCONTRADO");
+			advertencia.initStyle(StageStyle.DECORATED);
+			advertencia.setContentText("El ID ingresado no se encuentra en la base de datos.\nPor favor verifique");
+			advertencia.show();
+		}
+
+	}
 }

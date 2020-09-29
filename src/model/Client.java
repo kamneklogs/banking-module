@@ -1,6 +1,5 @@
 package model;
-
-import java.util.Date;
+	
 
 public class Client extends User implements Comparable<Client> {
 
@@ -30,7 +29,7 @@ public class Client extends User implements Comparable<Client> {
 	}
 
 	public double getCreditQuota() {
-		return limit - creditQuota;
+		return creditQuota;
 	}
 
 	public String getRegistrationDate() {
