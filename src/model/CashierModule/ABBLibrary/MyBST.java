@@ -6,9 +6,11 @@ public class MyBST<T extends Comparable> implements IMyBST<T> {
 
 	NodeBST<T> root;
 	int size;
+	private ArrayList<T> arrayL;
 
 	public MyBST() {
 		root = null;
+		arrayL = new ArrayList<T>();
 	}
 
 	@Override
@@ -86,9 +88,9 @@ public class MyBST<T extends Comparable> implements IMyBST<T> {
 	public ArrayList<T> generateArrayList() {
 
 		if (root == null) {
-			return null;
+			return arrayL;
 		} else {
-			ArrayList<T> arrayL = new ArrayList<T>();
+			arrayL = new ArrayList<T>();
 			root.inorden(arrayL);
 			return arrayL;
 		}

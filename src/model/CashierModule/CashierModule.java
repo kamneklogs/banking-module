@@ -63,7 +63,7 @@ public class CashierModule {
 		} else if (theNew.getId() >= 500 && theNew.getId() < 750) {
 			addClientToPartitionC(tN);
 
-			// Partition D: Heaps
+			// Partition D: ArrayList
 		} else {
 			addClientToPartitionD(tN);
 		}
@@ -98,6 +98,7 @@ public class CashierModule {
 		allClients.addAll(dataBasePartitionB.generateArrayList());
 
 		// linked list
+		allClients.addAll(dataBasePartitionC.generateArrayList());
 
 		HeapSort<Client> hS = new HeapSort<Client>();
 
@@ -157,6 +158,7 @@ public class CashierModule {
 				if (dataBasePartitionD.get(i).getId() == id) {
 					dataBasePartitionD.remove(i);
 					i = dataBasePartitionD.size();
+
 				}
 			}
 

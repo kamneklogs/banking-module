@@ -129,10 +129,9 @@ public class BankController {
 		msgQueue = "";
 		msgPriority = "";
 		seleccion = -1;
-	}
-
-	public void initialize() {
-
+		cashierModule.signUpClient(new User("Andrea", 001, true, 0), 322, 0, "29/09/2020", 0);
+		cashierModule.signUpClient(new User("Danna", 257, true, 2), 2, 3, "29/07/2020", 2);
+		cashierModule.signUpClient(new User("Camilo", 999, false, 0), 10000, 0, "29/09/2020", 0);
 	}
 
 	@FXML
@@ -194,8 +193,37 @@ public class BankController {
 			User temp = cashierModule.searchClient(Integer.parseInt(idUserLbl1.getText()));
 			nameUserLbl.setText(temp.getName());
 
+			if (temp.getSpecialCondition() == 0) {
+				nonSpecialCRB.setSelected(true);
+				nonSpecialCRB.setDisable(false);
+			} else if (temp.getSpecialCondition() == 1) {
+				ancientSpecialCRB.setSelected(true);
+				ancientSpecialCRB.setDisable(false);
 
-		}else{
+			} else if (temp.getSpecialCondition() == 2) {
+				discapacitySpecialCRB.setSelected(true);
+				discapacitySpecialCRB.setDisable(false);
+			} else {
+				pregnancySpecialCRB.setSelected(true);
+				pregnancySpecialCRB.setDisable(false);
+			}
+
+			if (temp.isGender()) {
+				girlRB.setSelected(true);
+				girlRB.setDisable(false);
+			} else {
+				boyRB.setSelected(true);
+				boyRB.setDisable(false);
+			}
+
+		} else {
+			nameUserLbl.setEditable(true);
+			nonSpecialCRB.setDisable(false);
+			ancientSpecialCRB.setDisable(false);
+			discapacitySpecialCRB.setDisable(false);
+			pregnancySpecialCRB.setDisable(false);
+			girlRB.setDisable(false);
+			boyRB.setDisable(false);
 
 		}
 	}
@@ -279,8 +307,6 @@ public class BankController {
 		Parent clientAccount = fxmlLoader.load();
 		mainPane.getChildren().clear();
 		mainPane.getChildren().add(clientAccount);
-
-		
 
 		if (seleccion == 0) {
 			msgQueue += queueModule.returnQueue(seleccion);

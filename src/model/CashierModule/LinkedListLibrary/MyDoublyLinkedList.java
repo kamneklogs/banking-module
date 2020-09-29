@@ -272,7 +272,7 @@ public class MyDoublyLinkedList<E extends Comparable> implements IMyDoublyLinked
 		ArrayList<E> theaL = new ArrayList<E>();
 
 		if (size == 0) {
-			throw new NullPointerException();
+			return theaL;
 		} else {
 			LLNode<E> temp = head;
 			while (temp != null) {
