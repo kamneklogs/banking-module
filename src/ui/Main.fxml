@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="778.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -17,7 +20,7 @@
                </image>
             </ImageView>
          </children></Pane>
-      <MenuBar layoutX="-2.0" layoutY="3.0" prefHeight="37.0" prefWidth="776.0">
+      <MenuBar layoutX="-2.0" layoutY="3.0" prefHeight="37.0" prefWidth="236.0">
         <menus>
           <Menu mnemonicParsing="false" text="Módulo caja">
             <items>
@@ -36,5 +39,12 @@
           </Menu>
         </menus>
       </MenuBar>
+      <Button fx:id="nextUserBtn" layoutX="623.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="155.0" text="Atender siguiente usuario" />
+      <Label layoutX="232.0" layoutY="6.0" text="USUARIO ACTUAL:">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="currentUserLbl" layoutX="427.0" layoutY="13.0" prefHeight="17.0" prefWidth="186.0" />
    </children>
 </Pane>
