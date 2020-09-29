@@ -110,6 +110,9 @@ public class BankController {
 	@FXML
 	private Button undoDeleteAccountButton;
 
+	@FXML
+	private Label currentUserLbl;
+
 	String msgQueue;
 
 	String msgPriority;
@@ -133,19 +136,9 @@ public class BankController {
 	}
 
 	@FXML
-	void createAClientAccount(ActionEvent event) throws IOException {
+	void nextUserBtn(ActionEvent event) {
 
 		try {
-
-			if(current instanceof Client){
-				throw new Exception();
-			}
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("createClientAccount.fxml"));
-			fxmlLoader.setController(this);
-			Parent clientAccount = fxmlLoader.load();
-			mainPane.getChildren().clear();
-			mainPane.getChildren().add(clientAccount);
-
 			List<String> choices = new ArrayList<>();
 			choices.add("Prioridad");
 			choices.add("Simple");
@@ -157,12 +150,21 @@ public class BankController {
 
 			Optional<String> result = dialog.showAndWait();
 
-			String r = result.get();
+			r = result.get();
 
 			if (r.equals("Simple")) {
+				if (queueModule.countSimpleQueue == 0) {
+					throw new Exception("No hay personas agregadas en la fila simple");
+				}
 				current = queueModule.getCurrenWithoutPriority();
 				cashierModule.setCurrent(current);
+
+				currentUserLbl.setText(current.getName() + " - ID: " + current.getId());
+
 			} else {
+				if (queueModule.countPriorityQueue == 0) {
+					throw new Exception("No hay personas agregadas en la fila de prioridad");
+				}
 				current = queueModule.getCurrentWithPriority();
 				cashierModule.setCurrent(current);
 			}
@@ -176,7 +178,50 @@ public class BankController {
 				genderCurrentTF.setText("Masculino");
 			}
 		} catch (Exception e) {
-			
+			Alert advertencia = new Alert(AlertType.ERROR);
+			advertencia.setTitle("ACCION INVALIDA");
+			advertencia.initStyle(StageStyle.DECORATED);
+			advertencia.setContentText(e.getMessage());
+			advertencia.showAndWait();
+		}
+
+	}
+
+	@FXML
+	void verifyID(ActionEvent event) {
+		if (cashierModule.searchClient(Integer.parseInt(idUserLbl1.getText())) != null) {
+
+			User temp = cashierModule.searchClient(Integer.parseInt(idUserLbl1.getText()));
+			nameUserLbl.setText(temp.getName());
+
+
+		}else{
+
+		}
+	}
+
+	String r;
+
+	@FXML
+	void createAClientAccount(ActionEvent event) throws IOException {
+
+		try {
+
+			if (cashierModule.getCurrent() instanceof Client) {
+				throw new Exception();
+			}
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("createClientAccount.fxml"));
+			fxmlLoader.setController(this);
+			Parent clientAccount = fxmlLoader.load();
+			mainPane.getChildren().clear();
+			mainPane.getChildren().add(clientAccount);
+
+		} catch (Exception e) {
+			Alert advertencia = new Alert(AlertType.ERROR);
+			advertencia.setTitle("ACCION INVALIDA");
+			advertencia.initStyle(StageStyle.DECORATED);
+			advertencia.setContentText("El usuario que ingresó ya se encuentra registrado.");
+			advertencia.showAndWait();
 		}
 
 	}
@@ -235,6 +280,8 @@ public class BankController {
 		mainPane.getChildren().clear();
 		mainPane.getChildren().add(clientAccount);
 
+		
+
 		if (seleccion == 0) {
 			msgQueue += queueModule.returnQueue(seleccion);
 		} else {
@@ -246,9 +293,9 @@ public class BankController {
 
 	@FXML
 	void enqueueUserBtn(ActionEvent event) throws IOException {
-
+		String name;
 		try {
-			String name = nameUserLbl.getText();
+			name = nameUserLbl.getText();
 
 			int id = Integer.parseInt(idUserLbl1.getText());
 
@@ -291,7 +338,7 @@ public class BankController {
 				advertencia.setTitle("CONFIRMACIÓN");
 				advertencia.initStyle(StageStyle.DECORATED);
 				advertencia.setContentText(
-						"Generación de turno exitosa." + "/n" + "A continuación se le mostrará el estado de la fila");
+						"Generación de turno exitosa." + "/\n" + "A continuación se le mostrará el estado de la fila");
 				advertencia.showAndWait();
 			} else {
 				Alert advertencia = new Alert(AlertType.ERROR);

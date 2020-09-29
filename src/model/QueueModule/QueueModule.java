@@ -8,6 +8,7 @@ public class QueueModule {
 
     public IQueue<User> simpleQueue;
     private PriorityQueueHeap priorityQueue;
+    public int countSimpleQueue, countPriorityQueue;
 
     public QueueModule() {
         simpleQueue = new Queue<User>();
@@ -18,9 +19,12 @@ public class QueueModule {
 
         if (u.getSpecialCondition() != 0) {
             priorityQueue.enqueue(u);
+            countPriorityQueue++;
+
         } else {
 
             simpleQueue.enqueue(u);
+            countSimpleQueue++;
 
             if (simpleQueue.getLast().getV() == u) {
                 return true;
@@ -81,6 +85,7 @@ public class QueueModule {
         User temp = priorityQueue.getHeap()[1];
 
         dequeueCurrentWithPriority();
+        countPriorityQueue--;
         return temp;
     }
 
@@ -89,6 +94,7 @@ public class QueueModule {
         User temp = simpleQueue.front().getV();
 
         dequeueCurrentWithoutPriority();
+        countSimpleQueue--;
         return temp;
     }
 

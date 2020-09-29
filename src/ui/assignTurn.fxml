@@ -26,7 +26,7 @@
          <font>
             <Font name="Arial" size="20.0" />
          </font></Label>
-      <TextField fx:id="nameUserLbl" layoutX="256.0" layoutY="117.0" prefHeight="26.0" prefWidth="423.0" />
+      <TextField fx:id="nameUserLbl" editable="false" layoutX="256.0" layoutY="117.0" prefHeight="26.0" prefWidth="423.0" />
       <Label layoutX="50.0" layoutY="169.0" text="Número identificación">
          <font>
             <Font name="Arial" size="20.0" />
@@ -36,7 +36,7 @@
          <font>
             <Font size="20.0" />
          </font></Label>
-      <RadioButton fx:id="nonSpecialCRB" layoutX="41.0" layoutY="285.0" mnemonicParsing="false" text="Ninguna condición especial">
+      <RadioButton fx:id="nonSpecialCRB" disable="true" layoutX="41.0" layoutY="285.0" mnemonicParsing="false" text="Ninguna condición especial">
          <toggleGroup>
             <ToggleGroup fx:id="specialCondicions" />
          </toggleGroup>
@@ -44,15 +44,15 @@
             <Font size="17.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="ancientSpecialCRB" layoutX="41.0" layoutY="321.0" mnemonicParsing="false" text="Tercera edad" toggleGroup="$specialCondicions">
+      <RadioButton fx:id="ancientSpecialCRB" disable="true" layoutX="41.0" layoutY="321.0" mnemonicParsing="false" text="Tercera edad" toggleGroup="$specialCondicions">
          <font>
             <Font size="17.0" />
          </font></RadioButton>
-      <RadioButton fx:id="discapacitySpecialCRB" layoutX="42.0" layoutY="358.0" mnemonicParsing="false" text="Discapacidad" toggleGroup="$specialCondicions">
+      <RadioButton fx:id="discapacitySpecialCRB" disable="true" layoutX="42.0" layoutY="358.0" mnemonicParsing="false" text="Discapacidad" toggleGroup="$specialCondicions">
          <font>
             <Font size="17.0" />
          </font></RadioButton>
-      <RadioButton fx:id="pregnancySpecialCRB" layoutX="43.0" layoutY="394.0" mnemonicParsing="false" text="Embarazo o niños en brazos" toggleGroup="$specialCondicions">
+      <RadioButton fx:id="pregnancySpecialCRB" disable="true" layoutX="43.0" layoutY="394.0" mnemonicParsing="false" text="Embarazo o niños en brazos" toggleGroup="$specialCondicions">
          <font>
             <Font size="17.0" />
          </font></RadioButton>
@@ -70,7 +70,7 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <RadioButton fx:id="girlRB" layoutX="470.0" layoutY="310.0" mnemonicParsing="false" text="Mujer">
+      <RadioButton fx:id="girlRB" disable="true" layoutX="470.0" layoutY="310.0" mnemonicParsing="false" text="Mujer">
          <toggleGroup>
             <ToggleGroup fx:id="gender" />
          </toggleGroup>
@@ -78,7 +78,7 @@
             <Font size="17.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="boyRB" layoutX="468.0" layoutY="271.0" mnemonicParsing="false" text="Hombre" toggleGroup="$gender">
+      <RadioButton fx:id="boyRB" disable="true" layoutX="468.0" layoutY="271.0" mnemonicParsing="false" text="Hombre" toggleGroup="$gender">
          <font>
             <Font size="17.0" />
          </font></RadioButton>
@@ -99,6 +99,6 @@
             <Font name="Arial Bold" size="22.0" />
          </font>
       </Label>
-      <Button layoutX="547.0" layoutY="168.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="547.0" layoutY="168.0" mnemonicParsing="false" onAction="#verifyID" text="Verificar" />
    </children>
 </Pane>

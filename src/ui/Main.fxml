@@ -39,7 +39,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button fx:id="nextUserBtn" layoutX="623.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="155.0" text="Atender siguiente usuario" />
+      <Button layoutX="623.0" layoutY="-3.0" mnemonicParsing="false" onAction="#nextUserBtn" prefHeight="43.0" prefWidth="155.0" text="Atender siguiente usuario" />
       <Label layoutX="232.0" layoutY="6.0" text="USUARIO ACTUAL:">
          <font>
             <Font name="System Bold" size="21.0" />
