@@ -83,6 +83,7 @@ public class MyDoublyLinkedList<E extends Comparable> implements IMyDoublyLinked
 			throw new IndexOutOfBoundsException("INDEXOUTOFBOUNDS");
 		}
 	}
+	
 
 	/**
 	 * Add an element to the list at the specified index
@@ -273,5 +274,7 @@ public class MyDoublyLinkedList<E extends Comparable> implements IMyDoublyLinked
 		Collections.sort(theaL);
 		return theaL;
 	}
+
+
 
 }

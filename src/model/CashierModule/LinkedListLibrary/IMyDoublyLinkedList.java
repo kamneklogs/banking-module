@@ -17,4 +17,5 @@ public interface IMyDoublyLinkedList<E extends Comparable> {
 	public E set(int index, E element);
 
 	public ArrayList<E> generateArrayList();
+	
 }
