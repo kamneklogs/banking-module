@@ -99,5 +99,6 @@
             <Font name="Arial Bold" size="22.0" />
          </font>
       </Label>
+      <Button layoutX="547.0" layoutY="168.0" mnemonicParsing="false" text="Button" />
    </children>
 </Pane>

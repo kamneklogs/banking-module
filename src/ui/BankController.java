@@ -134,40 +134,49 @@ public class BankController {
 
 	@FXML
 	void createAClientAccount(ActionEvent event) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("createClientAccount.fxml"));
-		fxmlLoader.setController(this);
-		Parent clientAccount = fxmlLoader.load();
-		mainPane.getChildren().clear();
-		mainPane.getChildren().add(clientAccount);
 
-		List<String> choices = new ArrayList<>();
-		choices.add("Prioridad");
-		choices.add("Simple");
+		try {
 
-		ChoiceDialog<String> dialog = new ChoiceDialog<>("Seleccione", choices);
-		dialog.setTitle("Siguiente turno");
-		dialog.setHeaderText("Elija a la fila que desea atender");
-		dialog.setContentText("Filas:");
+			if(current instanceof Client){
+				throw new Exception();
+			}
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("createClientAccount.fxml"));
+			fxmlLoader.setController(this);
+			Parent clientAccount = fxmlLoader.load();
+			mainPane.getChildren().clear();
+			mainPane.getChildren().add(clientAccount);
 
-		Optional<String> result = dialog.showAndWait();
+			List<String> choices = new ArrayList<>();
+			choices.add("Prioridad");
+			choices.add("Simple");
 
-		String r = result.get();
+			ChoiceDialog<String> dialog = new ChoiceDialog<>("Seleccione", choices);
+			dialog.setTitle("Siguiente turno");
+			dialog.setHeaderText("Elija a la fila que desea atender");
+			dialog.setContentText("Filas:");
 
-		if (r.equals("Simple")) {
-			current = queueModule.getCurrenWithoutPriority();
-			cashierModule.setCurrent(current);
-		} else {
-			current = queueModule.getCurrentWithPriority();
-			cashierModule.setCurrent(current);
-		}
+			Optional<String> result = dialog.showAndWait();
 
-		currentNameTF.setText(current.getName());
-		idCurrentTF.setText(current.getId() + "");
+			String r = result.get();
 
-		if (current.isGender()) {
-			genderCurrentTF.setText("Femenino");
-		} else {
-			genderCurrentTF.setText("Masculino");
+			if (r.equals("Simple")) {
+				current = queueModule.getCurrenWithoutPriority();
+				cashierModule.setCurrent(current);
+			} else {
+				current = queueModule.getCurrentWithPriority();
+				cashierModule.setCurrent(current);
+			}
+
+			currentNameTF.setText(current.getName());
+			idCurrentTF.setText(current.getId() + "");
+
+			if (current.isGender()) {
+				genderCurrentTF.setText("Femenino");
+			} else {
+				genderCurrentTF.setText("Masculino");
+			}
+		} catch (Exception e) {
+			
 		}
 
 	}
