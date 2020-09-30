@@ -34,7 +34,7 @@ class QueueTest {
 	@Test
 	public void isEmptyTest() {
 		setUp1();
-		assertTrue(myQueue.isEmpty());
+		assertFalse(myQueue.isEmpty());
 	}
 
 	@Test
