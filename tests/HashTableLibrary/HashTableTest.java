@@ -4,8 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import jdk.internal.jline.internal.TestAccessible;
-import jdk.jfr.Timestamp;
+
 import model.Client;
 import model.User;
 import model.CashierModule.HashTableLibrary.MyHashtable;
