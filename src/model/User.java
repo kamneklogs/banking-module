@@ -6,6 +6,9 @@ public class User {
 	private String name;
 	private int id;
 	private int specialCondition;
+	
+	private String specialConditionTableView;
+	private String genderTableView;
 	// True girl
 	// False boy
 	private boolean gender;
@@ -19,6 +22,20 @@ public class User {
 		this.id = id;
 		this.specialCondition = specialCondition;
 		this.gender = gender;
+		
+		if(gender) {
+			genderTableView="Mujer";
+		}else {
+			genderTableView="Hombre";
+		}
+	}
+
+	public String getGenderTableView() {
+		return genderTableView;
+	}
+
+	public void setGenderTableView(String genderTableView) {
+		this.genderTableView = genderTableView;
 	}
 
 	public String getName() {
@@ -61,6 +78,8 @@ public class User {
 	}
 
 	public boolean isGender() {
+		
+		
 		return gender;
 	}
 

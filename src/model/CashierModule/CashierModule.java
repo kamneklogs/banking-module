@@ -25,6 +25,14 @@ public class CashierModule {
 	private ArrayList<Client> desertersClients;
 	ArrayList<Client> allClients;
 
+	public ArrayList<Client> getAllClients() {
+		return allClients;
+	}
+
+	public void setAllClients(ArrayList<Client> allClients) {
+		this.allClients = allClients;
+	}
+
 	public CashierModule() {
 		dataBasePartitionA = new MyHashtable<Integer, Client>();
 		dataBasePartitionB = new MyBST<Client>();

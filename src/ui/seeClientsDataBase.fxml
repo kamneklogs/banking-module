@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
 
-
-<Pane fx:id="mainPane" prefHeight="615.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" />
+<Pane layoutX="-6.0" layoutY="40.0" prefHeight="575.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="clientsTV" layoutX="14.0" layoutY="46.0" prefHeight="492.0" prefWidth="760.0">
+        <columns>
+          <TableColumn fx:id="nameTC" prefWidth="75.0" text="Nombre" />
+          <TableColumn fx:id="idTC" prefWidth="75.0" text="Id" />
+            <TableColumn fx:id="genderTC" prefWidth="75.0" text="Género" />
+            <TableColumn fx:id="balanceTC" prefWidth="75.0" text="Balance" />
+            <TableColumn fx:id="creditCuotaTC" prefWidth="142.0" text="Crédito de cuota" />
+            <TableColumn fx:id="openingDateTC" prefWidth="143.0" text="Fecha de apertura " />
+            <TableColumn fx:id="specialConditionTC" prefWidth="174.0" text="Condición Especial" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>

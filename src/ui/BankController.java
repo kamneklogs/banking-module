@@ -8,16 +8,21 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
@@ -29,6 +34,48 @@ import model.QueueModule.QueueModule;
 
 public class BankController {
 
+	
+    @FXML
+    private TableView<Client> clientsTV;
+
+    @FXML
+    private TableColumn<Client, String> nameTC;
+
+    @FXML
+    private TableColumn<Client, String> idTC;
+
+    @FXML
+    private TableColumn<Client, String> genderTC;
+
+    @FXML
+    private TableColumn<Client, String> balanceTC;
+
+    @FXML
+    private TableColumn<Client, String> creditCuotaTC;
+
+    @FXML
+    private TableColumn<Client, String> openingDateTC;
+
+    @FXML
+    private TableColumn<Client, String> specialConditionTC;
+    
+    public void initializeTableView() {
+    	
+    	ObservableList<Client> observableList;
+    	
+    	observableList = FXCollections.observableArrayList(cashierModule.getAllClients());
+    	
+    	clientsTV.setItems(observableList);
+    	
+    	nameTC.setCellValueFactory(new PropertyValueFactory<Client, String>("name"));
+    	idTC.setCellValueFactory(new PropertyValueFactory<Client, String>("id"));
+    	genderTC.setCellValueFactory(new PropertyValueFactory<Client, String>("genderTableView"));
+    	balanceTC.setCellValueFactory(new PropertyValueFactory<Client, String>("balance"));
+    	creditCuotaTC.setCellValueFactory(new PropertyValueFactory<Client, String>("creditQuota"));
+    	openingDateTC.setCellValueFactory(new PropertyValueFactory<Client, String>("registrationDate"));
+    	
+    }
+    
 	private QueueModule queueModule;
 
 	private CashierModule cashierModule;
@@ -341,6 +388,9 @@ public class BankController {
 		Parent clientAccount = fxmlLoader.load();
 		mainPane.getChildren().clear();
 		mainPane.getChildren().add(clientAccount);
+		
+		cashierModule.unifyClients();
+		initializeTableView();
 	}
 
 	@FXML

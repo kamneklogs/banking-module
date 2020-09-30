@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="778.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="778.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane fx:id="mainPane" layoutX="-6.0" layoutY="40.0" prefHeight="575.0" prefWidth="784.0">
          <children>
@@ -29,7 +29,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#deleteClientAccount" text="Eliminar cuenta bancaria" />
                   <MenuItem mnemonicParsing="false" onAction="#payCreditCard" text="Pagar tarjeta de crédito" />
                   <MenuItem mnemonicParsing="false" onAction="#searchAClient" text="Buscar un cliente en la base de datos" />
-                  <MenuItem mnemonicParsing="false" text="Desplegar la lista total de clientes" />
+                  <MenuItem mnemonicParsing="false" onAction="#seeClientsDataBase" text="Desplegar la lista total de clientes" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Módulo fila">
