@@ -16,9 +16,12 @@ public class Queue<V> implements IQueue<V> {
     }
 
     @Override
-    public void enqueue(V item) {
-        // TODO Auto-generated method stub
-        Element<V> theE = new Element<V>();
+    public void enqueue(V item) throws NullPointerException{
+    	
+    	if(item==null) {
+    		throw new NullPointerException("cannot store nullpointers");
+    	}
+    	Element<V> theE = new Element<V>();
         theE.setV(item);
 
         if (isEmpty()) {
