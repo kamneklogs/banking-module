@@ -225,39 +225,15 @@ public class BankController {
 	}
 
 	@FXML
-	void nextUserBtn(ActionEvent event) {
-
+	void nextUserSimple(ActionEvent event) {
 		try {
-			List<String> choices = new ArrayList<>();
-			choices.add("Prioridad");
-			choices.add("Simple");
-
-			ChoiceDialog<String> dialog = new ChoiceDialog<>("Seleccione", choices);
-			dialog.setTitle("Siguiente turno");
-			dialog.setHeaderText("Elija a la fila que desea atender");
-			dialog.setContentText("Filas:");
-
-			Optional<String> result = dialog.showAndWait();
-
-			r = result.get();
-
-			if (r.equals("Simple")) {
-				if (queueModule.countSimpleQueue == 0) {
-					throw new Exception("No hay personas agregadas en la fila simple");
-				}
-				current = queueModule.getCurrenWithoutPriority();
-				cashierModule.setCurrent(current);
-
-				currentUserLbl.setText(current.getName() + " - ID: " + current.getId());
-
-			} else {
-				if (queueModule.countPriorityQueue == 0) {
-					throw new Exception("No hay personas agregadas en la fila de prioridad");
-				}
-				current = queueModule.getCurrentWithPriority();
-				cashierModule.setCurrent(current);
+			if (queueModule.countSimpleQueue == 0) {
+				throw new Exception("No hay personas agregadas en la fila simple");
 			}
+			current = queueModule.getCurrenWithoutPriority();
+			cashierModule.setCurrent(current);
 
+			currentUserLbl.setText(current.getName() + " - ID: " + current.getId());
 		} catch (Exception e) {
 			Alert advertencia = new Alert(AlertType.ERROR);
 			advertencia.setTitle("ACCION INVALIDA");
@@ -266,7 +242,26 @@ public class BankController {
 			e.printStackTrace();
 			advertencia.showAndWait();
 		}
+	}
 
+	@FXML
+	void nextUserPriority(ActionEvent event) {
+		try {
+			if (queueModule.countPriorityQueue == 0) {
+				throw new Exception("No hay personas agregadas en la fila de prioridad");
+			}
+			current = queueModule.getCurrentWithPriority();
+			cashierModule.setCurrent(current);
+
+			currentUserLbl.setText(current.getName() + " - ID: " + current.getId());
+		} catch (Exception e) {
+			Alert advertencia = new Alert(AlertType.ERROR);
+			advertencia.setTitle("ACCION INVALIDA");
+			advertencia.initStyle(StageStyle.DECORATED);
+			advertencia.setContentText(e.getMessage());
+			e.printStackTrace();
+			advertencia.showAndWait();
+		}
 	}
 
 	@FXML
@@ -409,6 +404,15 @@ public class BankController {
 		}
 		queueLabel.setText(msgQueue);
 		priorityLabel.setText(msgPriority);
+	}
+
+	@FXML
+	void userInformationQueue(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("userInformation.fxml"));
+		fxmlLoader.setController(this);
+		Parent userInformation= fxmlLoader.load();
+		mainPane.getChildren().clear();
+		mainPane.getChildren().add(userInformation);
 	}
 
 	@FXML
