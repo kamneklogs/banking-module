@@ -6,7 +6,7 @@ import java.util.Collections;
 public class MyDoublyLinkedList<E extends Comparable> implements IMyDoublyLinkedList<E> {
 	LLNode<E> head;
 	LLNode<E> tail;
-	int size;
+	public int size;
 
 	/** Create a new empty LinkedList */
 	public MyDoublyLinkedList() {
