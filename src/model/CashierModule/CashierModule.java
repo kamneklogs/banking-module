@@ -141,7 +141,7 @@ public class CashierModule {
 		return null;
 
 	}
-
+	public void insertionSort(){}
 	public boolean deleteClientAccount(int id) {
 
 		desertersClients.add(searchClient(id));
