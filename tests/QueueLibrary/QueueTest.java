@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import jdk.jfr.Timestamp;
 import model.User;
 import model.QueueModule.QueueLibrary.Queue;
 
@@ -29,6 +30,18 @@ class QueueTest {
 		myQueue.enqueue(new User("Danna", 001, true, 0));
 		myQueue.enqueue(new User("Andrea", 002, true, 0));
 
+	}
+
+	@Test
+	public void isEmptyTest() {
+		setUp1();
+		assertTrue(myQueue.isEmpty());
+	}
+
+	@Test
+	public void sizeTest() {
+		setUp1();
+		assertEquals(1, myQueue.size);
 	}
 
 	/**
