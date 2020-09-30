@@ -70,6 +70,18 @@ class HashTableTest {
 		Client removed = myHashTable.remove(50);
 		assertEquals("Camilo", removed.getName());
 	}
-	
-	
+
+	/**
+	 * Test method add, which verifies if the element added in a slot of the hash
+	 * table it's truly added there verifying with the get method in that slot
+	 */
+	@Test
+	public void addTest() {
+		setUp3();
+
+		myHashTable.add(111, new Client("Alberto", 111, true, 322, 0, "29/09/2020", 0));
+
+		assertEquals("Alberto", myHashTable.get(111).getName());
+	}
+
 }
