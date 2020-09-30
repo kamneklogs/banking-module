@@ -27,7 +27,7 @@ public class PriorityQueueHeap {
 
 	}
 
-	public void goUp() {
+	private void goUp() {
 		int index = lastIndex;
 		int parentIndex = parent(index);
 
@@ -38,7 +38,7 @@ public class PriorityQueueHeap {
 		}
 	}
 
-	public void goDown() {
+	private void goDown() {
 
 		int index = 1;
 
