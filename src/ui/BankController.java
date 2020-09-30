@@ -526,7 +526,7 @@ public class BankController {
 				} else {
 					g = "Hombre";
 				}
-				genderCurrentUser.setText(g);
+				genderNextUser.setText(g);
 			}
 		}
 	}

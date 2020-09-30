@@ -28,7 +28,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#deleteClientAccount" text="Eliminar cuenta bancaria" />
                   <MenuItem mnemonicParsing="false" onAction="#payCreditCard" text="Pagar tarjeta de crédito" />
                   <MenuItem mnemonicParsing="false" onAction="#searchAClient" text="Buscar un cliente en la base de datos" />
-                  <MenuItem mnemonicParsing="false" text="Desplegar la lista total de clientes" />
+                  <MenuItem mnemonicParsing="false" onAction="#seeClientsDataBase" text="Desplegar la lista total de clientes" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Módulo fila">
