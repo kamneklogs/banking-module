@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import jdk.internal.jline.internal.TestAccessible;
+import jdk.jfr.Timestamp;
 import model.Client;
 import model.User;
 import model.CashierModule.HashTableLibrary.MyHashtable;
@@ -38,7 +40,10 @@ class HashTableTest {
 	public void isEmptyTest() {
 		setUp1();
 		assertTrue(myHashTable.isEmpty());
+	}
 
+	@Test
+	public void isEmptyTest2(){
 		setUp2();
 		assertFalse(myHashTable.isEmpty());
 	}
@@ -54,6 +59,12 @@ class HashTableTest {
 
 	}
 
+	@Test
+	public void getTestInterestingCase() {
+		setUp1();
+		assertEquals(null, myHashTable.get(0));
+	}
+
 	/**
 	 * Test method remove, which verifies in an empty hash table and removes
 	 * something, so it returns null, and in a hast table with elements, wich
@@ -61,11 +72,14 @@ class HashTableTest {
 	 * 
 	 */
 	@Test
-	public void removeTest() {
+	public void removeTestSpecialCase() {
 		setUp1();
 		Client returned = myHashTable.remove(0);
 		assertNull(returned);
+	}
 
+	@Test
+	public void removeTestBaseCase() {
 		setUp3();
 		Client removed = myHashTable.remove(50);
 		assertEquals("Camilo", removed.getName());
@@ -84,4 +98,12 @@ class HashTableTest {
 		assertEquals("Alberto", myHashTable.get(111).getName());
 	}
 
+	@Test
+	public void addTestInterestingCase() {
+		setUp1();
+		
+		myHashTable.add(111, new Client("Alberto", 111, true, 322, 0, "29/09/2020", 0));
+
+		assertEquals(false, myHashTable.isEmpty());
+	}
 }
