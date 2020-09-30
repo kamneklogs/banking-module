@@ -73,6 +73,7 @@ public class BankController {
     	balanceTC.setCellValueFactory(new PropertyValueFactory<Client, String>("balance"));
     	creditCuotaTC.setCellValueFactory(new PropertyValueFactory<Client, String>("creditQuota"));
     	openingDateTC.setCellValueFactory(new PropertyValueFactory<Client, String>("registrationDate"));
+    	specialConditionTC.setCellValueFactory(new PropertyValueFactory<Client, String>("specialConditionTableView"));
     	
     }
     
@@ -220,7 +221,7 @@ public class BankController {
 		seleccion = -1;
 		cashierModule.signUpClient(new User("Andrea", 001, true, 0), 322, 0, "29/09/2020", 0);
 		cashierModule.signUpClient(new User("Danna", 257, true, 2), 2, 3, "29/07/2020", 2);
-		cashierModule.signUpClient(new User("Camilo", 999, true, 0), 10000, 0, "29/09/2020", 0);
+		cashierModule.signUpClient(new User("Camilo", 999, false, 0), 10000, 0, "29/09/2020", 0);
 	}
 
 	@FXML

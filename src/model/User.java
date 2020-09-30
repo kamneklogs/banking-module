@@ -28,6 +28,26 @@ public class User {
 		}else {
 			genderTableView="Hombre";
 		}
+		
+		
+		if(specialCondition==0) {
+			specialConditionTableView="0. Sin condición especial";
+		}else if(specialCondition==1) {
+			specialConditionTableView="1. Tercera edad";
+			
+		}else if(specialCondition==2) {
+			specialConditionTableView="2. Discapacidad";
+		}else {
+			specialConditionTableView="3. Embarazo y niños en brazos";
+		}
+	}
+
+	public String getSpecialConditionTableView() {
+		return specialConditionTableView;
+	}
+
+	public void setSpecialConditionTableView(String specialConditionTableView) {
+		this.specialConditionTableView = specialConditionTableView;
 	}
 
 	public String getGenderTableView() {
