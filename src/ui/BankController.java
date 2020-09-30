@@ -212,6 +212,36 @@ public class BankController {
 	@FXML
 	private TextField specialConditionSearchTF;
 
+
+	@FXML
+	private Pane userInformation;
+
+	@FXML
+	private TextField nameCurrentUser;
+
+	@FXML
+	private TextField idCurrentUser;
+
+	@FXML
+	private TextField specialCurrentUser;
+
+	@FXML
+	private TextField genderCurrentUser;
+
+	@FXML
+	private TextField nameNextUser;
+
+	@FXML
+	private TextField idNextUser;
+
+	@FXML
+	private TextField specialNextUser;
+
+	@FXML
+	private TextField genderNextUser;
+
+	private int queueType;
+
 	public BankController() {
 
 		queueModule = new QueueModule();
@@ -219,6 +249,7 @@ public class BankController {
 		msgQueue = "";
 		msgPriority = "";
 		seleccion = -1;
+		queueType = -1;
 		cashierModule.signUpClient(new User("Andrea", 001, true, 0), 322, 0, "29/09/2020", 0);
 		cashierModule.signUpClient(new User("Danna", 257, true, 2), 2, 3, "29/07/2020", 2);
 		cashierModule.signUpClient(new User("Camilo", 999, false, 0), 10000, 0, "29/09/2020", 0);
@@ -230,10 +261,15 @@ public class BankController {
 			if (queueModule.countSimpleQueue == 0) {
 				throw new Exception("No hay personas agregadas en la fila simple");
 			}
-			current = queueModule.getCurrenWithoutPriority();
+			current = queueModule.getCurrenWithoutPriority2();
 			cashierModule.setCurrent(current);
 
 			currentUserLbl.setText(current.getName() + " - ID: " + current.getId());
+
+			queueType = 0;
+
+			userInformationQueue(event);
+
 		} catch (Exception e) {
 			Alert advertencia = new Alert(AlertType.ERROR);
 			advertencia.setTitle("ACCION INVALIDA");
@@ -241,6 +277,7 @@ public class BankController {
 			advertencia.setContentText(e.getMessage());
 			e.printStackTrace();
 			advertencia.showAndWait();
+
 		}
 	}
 
@@ -254,6 +291,11 @@ public class BankController {
 			cashierModule.setCurrent(current);
 
 			currentUserLbl.setText(current.getName() + " - ID: " + current.getId());
+
+			queueType = 1;
+
+			userInformationQueue(event);
+			
 		} catch (Exception e) {
 			Alert advertencia = new Alert(AlertType.ERROR);
 			advertencia.setTitle("ACCION INVALIDA");
@@ -413,6 +455,80 @@ public class BankController {
 		Parent userInformation= fxmlLoader.load();
 		mainPane.getChildren().clear();
 		mainPane.getChildren().add(userInformation);
+
+		//Simple queue
+		if (queueType == 0) {
+			//Actual user
+			User current = queueModule.getCurrenWithoutPriority2();
+			nameCurrentUser.setText(current.getName());
+			idCurrentUser.setText(current.getId() + "");
+			specialCurrentUser.setText("Ninguna condición especial");
+			boolean gender = current.isGender();
+			String g = "";
+			if (gender == true) {
+				g = "Mujer";
+			} else {
+				g = "Hombre";
+			}
+			genderCurrentUser.setText(g);
+
+			queueModule.simpleQueue.dequeue();
+
+			//Next user
+			if (queueModule.getCurrenWithoutPriority2() != null) {
+				nameNextUser.setText(queueModule.getCurrenWithoutPriority2().getName());
+				idNextUser.setText(queueModule.getCurrenWithoutPriority2().getId() + "");
+				specialNextUser.setText("Ninguna condición especial");
+				gender = queueModule.getCurrenWithoutPriority2().isGender();
+				g = "";
+				if (gender == true) {
+					g = "Mujer";
+				} else {
+					g = "Hombre";
+				}
+				genderNextUser.setText(g);
+			}
+
+		//Priority queue
+	} else if (queueType == 1) {
+			User current = queueModule.getCurrentWithPriority2();
+			nameCurrentUser.setText(current.getName());
+			idCurrentUser.setText(current.getId() + "");
+			String sp = "";
+			if (current.getSpecialCondition() == 1) {
+				sp = "Tercera edad";
+			} else if (current.getSpecialCondition() == 2) {
+				sp = "Discapacidad";
+			} else {
+				sp = "Embarazo o niños en brazos";
+			}
+			specialCurrentUser.setText(sp);
+			boolean gender = current.isGender();
+			String g = "";
+			if (gender == true) {
+				g = "Mujer";
+			} else {
+				g = "Hombre";
+			}
+			genderCurrentUser.setText(g);
+
+			queueModule.priorityQueue.dequeue();
+
+			// Next user
+			if (queueModule.getCurrentWithPriority2() != null) {
+				nameNextUser.setText(queueModule.getCurrentWithPriority2().getName());
+				idNextUser.setText(queueModule.getCurrentWithPriority2().getId() + "");
+				specialNextUser.setText("Ninguna condición especial");
+				gender = queueModule.getCurrentWithPriority2().isGender();
+				g = "";
+				if (gender == true) {
+					g = "Mujer";
+				} else {
+					g = "Hombre";
+				}
+				genderCurrentUser.setText(g);
+			}
+		}
 	}
 
 	@FXML

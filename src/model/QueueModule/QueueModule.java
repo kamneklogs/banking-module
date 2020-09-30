@@ -7,7 +7,7 @@ import model.QueueModule.QueueLibrary.*;
 public class QueueModule {
 
     public IQueue<User> simpleQueue;
-    private PriorityQueueHeap priorityQueue;
+    public PriorityQueueHeap priorityQueue;
     public int countSimpleQueue, countPriorityQueue;
 
     public QueueModule() {
@@ -89,12 +89,24 @@ public class QueueModule {
         return temp;
     }
 
+    public User getCurrentWithPriority2() {
+        User temp = priorityQueue.getHeap()[1];
+        return temp;
+    }
+
     public User getCurrenWithoutPriority() {
 
         User temp = simpleQueue.front().getV();
 
         dequeueCurrentWithoutPriority();
         countSimpleQueue--;
+        return temp;
+    }
+
+    public User getCurrenWithoutPriority2() {
+
+        User temp = simpleQueue.front().getV();
+
         return temp;
     }
 
