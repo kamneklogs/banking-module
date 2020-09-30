@@ -141,7 +141,19 @@ public class CashierModule {
 		return null;
 
 	}
-	public void insertionSort(){}
+
+	public void insertionSort() {
+		for (int i = 0; i < allClients.size(); i++) {
+			Client aux = allClients.get(i);
+			int j = i - 1;
+			while (j > 0 && allClients.get(j).compareTo(aux) > 0) {
+				allClients.set(j + 1, allClients.get(j));
+				j = j - 1;
+			}
+			allClients.set(j + 1, aux);
+		}
+	}
+
 	public boolean deleteClientAccount(int id) {
 
 		desertersClients.add(searchClient(id));
@@ -195,8 +207,5 @@ public class CashierModule {
 	public void setDesertersClients(ArrayList<Client> desertersClients) {
 		this.desertersClients = desertersClients;
 	}
-	
-
-
 
 }
