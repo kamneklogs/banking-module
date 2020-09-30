@@ -268,6 +268,9 @@ public class BankController {
 
 			queueType = 0;
 
+			msgQueue = queueModule.getCurrentState()[0];
+			msgPriority = queueModule.getCurrentState()[1];
+
 			userInformationQueue(event);
 
 		} catch (Exception e) {
@@ -287,12 +290,15 @@ public class BankController {
 			if (queueModule.countPriorityQueue == 0) {
 				throw new Exception("No hay personas agregadas en la fila de prioridad");
 			}
-			current = queueModule.getCurrentWithPriority();
+			current = queueModule.getCurrentWithPriority2();
 			cashierModule.setCurrent(current);
 
 			currentUserLbl.setText(current.getName() + " - ID: " + current.getId());
 
 			queueType = 1;
+
+			msgQueue = queueModule.getCurrentState()[0];
+			msgPriority = queueModule.getCurrentState()[1];
 
 			userInformationQueue(event);
 			
@@ -438,12 +444,7 @@ public class BankController {
 		Parent clientAccount = fxmlLoader.load();
 		mainPane.getChildren().clear();
 		mainPane.getChildren().add(clientAccount);
-
-		if (seleccion == 0) {
-			msgQueue += queueModule.returnQueue(seleccion);
-		} else {
-			msgPriority = queueModule.returnQueue(seleccion);
-		}
+		
 		queueLabel.setText(msgQueue);
 		priorityLabel.setText(msgPriority);
 	}
@@ -594,6 +595,8 @@ public class BankController {
 				seleccion = 1;
 			}
 
+			msgQueue = queueModule.getCurrentState()[0];
+			msgPriority = queueModule.getCurrentState()[1];
 			assignTurn(event);
 
 		} catch (
