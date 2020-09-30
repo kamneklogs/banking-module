@@ -1,5 +1,4 @@
 package model;
-	
 
 public class Client extends User implements Comparable<Client> {
 
@@ -43,14 +42,12 @@ public class Client extends User implements Comparable<Client> {
 	@Override
 	public int compareTo(Client u) {
 
-		if (getId() > u.getId()) {
+		if (u.getId() > this.getId()) {
 			return 1;
-
-		} else if (getId() == u.getId()) {
-			return 0;
-		} else {
+		} else if (u.getId() < this.getId()) {
 			return -1;
 		}
+		return 0;
 
 	}
 

@@ -33,7 +33,7 @@ public class HeapSort<V extends Comparable<V>> {
             largest = left;
         }
 
-        if (right < n && a.get(right).compareTo(a.get(largest)) > 0) {
+        if (right < n && a.get(right).compareTo(a.get(largest)) < 0) {
             largest = right;
         }
 
