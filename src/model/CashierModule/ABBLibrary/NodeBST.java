@@ -50,7 +50,7 @@ public class NodeBST<T extends Comparable> {
 
 	public void insertNode(NodeBST<T> nuevo) {
 
-		if (compareTo(nuevo) > 0) {
+		if (compareTo(nuevo) < 0) {
 
 			if (left == null)
 				left = nuevo;

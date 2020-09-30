@@ -195,5 +195,8 @@ public class CashierModule {
 	public void setDesertersClients(ArrayList<Client> desertersClients) {
 		this.desertersClients = desertersClients;
 	}
+	
+
+
 
 }

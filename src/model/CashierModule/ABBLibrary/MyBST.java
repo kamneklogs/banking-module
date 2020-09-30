@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class MyBST<T extends Comparable> implements IMyBST<T> {
 
 	NodeBST<T> root;
-	int size;
+	public int size;
 	private ArrayList<T> arrayL;
 
 	public MyBST() {
