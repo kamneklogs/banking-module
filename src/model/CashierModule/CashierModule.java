@@ -151,7 +151,7 @@ public class CashierModule {
 				j = j - 1;
 			}
 			allClients.set(j + 1, aux);
-		}
+		}	
 	}
 
 	public boolean deleteClientAccount(int id) {
