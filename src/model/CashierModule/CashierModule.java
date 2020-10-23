@@ -186,7 +186,7 @@ public class CashierModule {
 
 		for (int i = 0; i < allClients.size(); i++) {
 			if (allClients.get(i).getId() == id) {
-				System.out.println(allClients.remove(i).getName());
+				allClients.remove(i);
 			}
 		}
 

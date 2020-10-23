@@ -677,6 +677,9 @@ public class BankController {
 		advertencia.setContentText(
 				"El cliente con ID " + toDelete.getId() + " fue restaurado correctamente a la base de datos");
 		advertencia.show();
+		if(cashierModule.getDesertersClients().isEmpty()) {
+			undoDeleteAccountButton.setDisable(true);
+		}
 
 	}
 
