@@ -60,13 +60,13 @@ public class CashierModule {
 				specialCondition);
 
 		// Partition A: Hash Table
-		if (theNew.getId() >= 0 && theNew.getId() < 250) {
+		if (theNew.getId() >= 0 && theNew.getId() < 500) {
 			addClientToPartitionA(tN);
 
 			// Partition B: ABB
-		} else if (theNew.getId() >= 250 && theNew.getId() < 500) {
-
-			addClientToPartitionB(tN);
+//		} else if (theNew.getId() >= 250 && theNew.getId() < 500) {
+//
+//			addClientToPartitionB(tN);
 			// Partition C: LinkedList
 		} else if (theNew.getId() >= 500 && theNew.getId() < 750) {
 			addClientToPartitionC(tN);
@@ -151,7 +151,7 @@ public class CashierModule {
 				j = j - 1;
 			}
 			allClients.set(j + 1, aux);
-		}	
+		}
 	}
 
 	public boolean deleteClientAccount(int id) {
@@ -159,14 +159,14 @@ public class CashierModule {
 		desertersClients.add(searchClient(id));
 
 		// Partition A: Hash Table
-		if (id >= 0 && id < 250) {
+		if (id >= 0 && id < 500) {
 
 			dataBasePartitionA.remove(id);
 
 			// Partition B: ABB
-		} else if (id >= 250 && id < 500) {
-
-			dataBasePartitionB.removeNode(searchClient(id));
+//		} else if (id >= 250 && id < 500) {
+//
+//			dataBasePartitionB.removeNode(searchClient(id));
 			// Partition C: LinkedList
 		} else if (id >= 500 && id < 750) {
 
@@ -186,7 +186,7 @@ public class CashierModule {
 
 		for (int i = 0; i < allClients.size(); i++) {
 			if (allClients.get(i).getId() == id) {
-				allClients.remove(i);
+				System.out.println(allClients.remove(i).getName());
 			}
 		}
 

@@ -81,7 +81,7 @@ public class NodeBST<T extends Comparable> {
 	public NodeBST<T> search(T datoBuscado) {
 		if (data.compareTo(datoBuscado) == 0)
 			return this;
-		else if (data.compareTo(datoBuscado) > 0)
+		else if (data.compareTo(datoBuscado) < 0)
 			return (left == null) ? null : left.search(datoBuscado);
 		else
 			return (right == null) ? null : right.search(datoBuscado);

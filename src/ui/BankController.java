@@ -579,7 +579,7 @@ public class BankController {
 				advertencia.setTitle("CONFIRMACIÓN");
 				advertencia.initStyle(StageStyle.DECORATED);
 				advertencia.setContentText(
-						"Generación de turno exitosa." + "/\n" + "A continuación se le mostrará el estado de la fila");
+						"Generación de turno exitosa." + "\n" + "A continuación se le mostrará el estado de la fila");
 				advertencia.showAndWait();
 			} else {
 				Alert advertencia = new Alert(AlertType.ERROR);

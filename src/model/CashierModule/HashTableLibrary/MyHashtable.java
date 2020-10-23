@@ -10,8 +10,9 @@ public class MyHashtable<K, V> implements IMyHashtable<K, V> {
     int maxs;
     int size;
 
-    public MyHashtable() {
-        maxs = 249;
+    @SuppressWarnings("unchecked")
+	public MyHashtable() {
+        maxs = 499;
         slots = new Element[maxs];
     }
 
@@ -72,7 +73,8 @@ public class MyHashtable<K, V> implements IMyHashtable<K, V> {
         }
     }
 
-    public void add(K key, V value) throws ClassCastException {
+    @SuppressWarnings("unchecked")
+	public void add(K key, V value) throws ClassCastException {
 
         int index = getSlotIndex(key);
 
