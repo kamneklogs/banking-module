@@ -34,49 +34,48 @@ import model.QueueModule.QueueModule;
 
 public class BankController {
 
-	
-    @FXML
-    private TableView<Client> clientsTV;
+	@FXML
+	private TableView<Client> clientsTV;
 
-    @FXML
-    private TableColumn<Client, String> nameTC;
+	@FXML
+	private TableColumn<Client, String> nameTC;
 
-    @FXML
-    private TableColumn<Client, String> idTC;
+	@FXML
+	private TableColumn<Client, String> idTC;
 
-    @FXML
-    private TableColumn<Client, String> genderTC;
+	@FXML
+	private TableColumn<Client, String> genderTC;
 
-    @FXML
-    private TableColumn<Client, String> balanceTC;
+	@FXML
+	private TableColumn<Client, String> balanceTC;
 
-    @FXML
-    private TableColumn<Client, String> creditCuotaTC;
+	@FXML
+	private TableColumn<Client, String> creditCuotaTC;
 
-    @FXML
-    private TableColumn<Client, String> openingDateTC;
+	@FXML
+	private TableColumn<Client, String> openingDateTC;
 
-    @FXML
-    private TableColumn<Client, String> specialConditionTC;
-    
-    public void initializeTableView() {
-    	
-    	ObservableList<Client> observableList;
-    	
-    	observableList = FXCollections.observableArrayList(cashierModule.getAllClients());
-    	
-    	clientsTV.setItems(observableList);
-    	
-    	nameTC.setCellValueFactory(new PropertyValueFactory<Client, String>("name"));
-    	idTC.setCellValueFactory(new PropertyValueFactory<Client, String>("id"));
-    	genderTC.setCellValueFactory(new PropertyValueFactory<Client, String>("genderTableView"));
-    	balanceTC.setCellValueFactory(new PropertyValueFactory<Client, String>("balance"));
-    	creditCuotaTC.setCellValueFactory(new PropertyValueFactory<Client, String>("creditQuota"));
-    	openingDateTC.setCellValueFactory(new PropertyValueFactory<Client, String>("registrationDate"));
-    	specialConditionTC.setCellValueFactory(new PropertyValueFactory<Client, String>("specialConditionTableView"));
-    	
-    }
-    
+	@FXML
+	private TableColumn<Client, String> specialConditionTC;
+
+	public void initializeTableView() {
+
+		ObservableList<Client> observableList;
+
+		observableList = FXCollections.observableArrayList(cashierModule.getAllClients());
+
+		clientsTV.setItems(observableList);
+
+		nameTC.setCellValueFactory(new PropertyValueFactory<Client, String>("name"));
+		idTC.setCellValueFactory(new PropertyValueFactory<Client, String>("id"));
+		genderTC.setCellValueFactory(new PropertyValueFactory<Client, String>("genderTableView"));
+		balanceTC.setCellValueFactory(new PropertyValueFactory<Client, String>("balance"));
+		creditCuotaTC.setCellValueFactory(new PropertyValueFactory<Client, String>("creditQuota"));
+		openingDateTC.setCellValueFactory(new PropertyValueFactory<Client, String>("registrationDate"));
+		specialConditionTC.setCellValueFactory(new PropertyValueFactory<Client, String>("specialConditionTableView"));
+
+	}
+
 	private QueueModule queueModule;
 
 	private CashierModule cashierModule;
@@ -212,7 +211,6 @@ public class BankController {
 	@FXML
 	private TextField specialConditionSearchTF;
 
-
 	@FXML
 	private Pane userInformation;
 
@@ -301,7 +299,7 @@ public class BankController {
 			msgPriority = queueModule.getCurrentState()[1];
 
 			userInformationQueue(event);
-			
+
 		} catch (Exception e) {
 			Alert advertencia = new Alert(AlertType.ERROR);
 			advertencia.setTitle("ACCION INVALIDA");
@@ -432,7 +430,7 @@ public class BankController {
 		Parent clientAccount = fxmlLoader.load();
 		mainPane.getChildren().clear();
 		mainPane.getChildren().add(clientAccount);
-		
+
 		cashierModule.unifyClients();
 		initializeTableView();
 	}
@@ -444,7 +442,7 @@ public class BankController {
 		Parent clientAccount = fxmlLoader.load();
 		mainPane.getChildren().clear();
 		mainPane.getChildren().add(clientAccount);
-		
+
 		queueLabel.setText(msgQueue);
 		priorityLabel.setText(msgPriority);
 	}
@@ -453,13 +451,13 @@ public class BankController {
 	void userInformationQueue(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("userInformation.fxml"));
 		fxmlLoader.setController(this);
-		Parent userInformation= fxmlLoader.load();
+		Parent userInformation = fxmlLoader.load();
 		mainPane.getChildren().clear();
 		mainPane.getChildren().add(userInformation);
 
-		//Simple queue
+		// Simple queue
 		if (queueType == 0) {
-			//Actual user
+			// Actual user
 			User current = queueModule.getCurrenWithoutPriority2();
 			nameCurrentUser.setText(current.getName());
 			idCurrentUser.setText(current.getId() + "");
@@ -475,7 +473,7 @@ public class BankController {
 
 			queueModule.simpleQueue.dequeue();
 
-			//Next user
+			// Next user
 			if (queueModule.getCurrenWithoutPriority2() != null) {
 				nameNextUser.setText(queueModule.getCurrenWithoutPriority2().getName());
 				idNextUser.setText(queueModule.getCurrenWithoutPriority2().getId() + "");
@@ -490,8 +488,8 @@ public class BankController {
 				genderNextUser.setText(g);
 			}
 
-		//Priority queue
-	} else if (queueType == 1) {
+			// Priority queue
+		} else if (queueType == 1) {
 			User current = queueModule.getCurrentWithPriority2();
 			nameCurrentUser.setText(current.getName());
 			idCurrentUser.setText(current.getId() + "");
@@ -671,13 +669,15 @@ public class BankController {
 				toUndo.getBalance(), toUndo.getCreditQuota(), toUndo.getRegistrationDate(),
 				toUndo.getSpecialCondition());
 
+		cashierModule.getDesertersClients().remove(cashierModule.getDesertersClients().size() - 1);
+
 		Alert advertencia = new Alert(AlertType.CONFIRMATION);
 		advertencia.setTitle("ACCION DESHECHA");
 		advertencia.initStyle(StageStyle.DECORATED);
 		advertencia.setContentText(
 				"El cliente con ID " + toDelete.getId() + " fue restaurado correctamente a la base de datos");
 		advertencia.show();
-		if(cashierModule.getDesertersClients().isEmpty()) {
+		if (cashierModule.getDesertersClients().isEmpty()) {
 			undoDeleteAccountButton.setDisable(true);
 		}
 
